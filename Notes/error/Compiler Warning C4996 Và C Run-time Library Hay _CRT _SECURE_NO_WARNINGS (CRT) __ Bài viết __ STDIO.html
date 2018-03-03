@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<base href="http://www.stdio.vn">
+<title>Compiler Warning C4996 Và C Run-time Library Hay _CRT _SECURE_NO_WARNINGS (CRT) :: Bài viết :: STDIO</title>
+<link rel="icon" type="image/ico" href="/makeup/shared/favicon.ico" />
+
+<meta name="keywords" content="_crt_secure_no_warnings,lỗi printf_s,lỗi _scanf_s,lỗi fopen_s,compiler warning c4996,loi printf_s,loi _scanf_s,loi fopen_s" />
+<meta name="description" content="Khi bạn sử dụng các hàm như printf, scanf, fopen, … thường sẽ thấy bị &quot;ép&quot; phải sử dụng printf_s, scanf_s, fopen_s, … và chúng ta sẽ thường thắc mắc là tại sao phải sử dụng printf_s thay vì printf? Sao ta không thể sử dụng được printf, …" />
+<meta property="og:title" content="Compiler Warning C4996 Và C Run-time Library Hay _CRT _SECURE_NO_WARNINGS (CRT) :: Bài viết :: STDIO" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="http://www.stdio.vn/statics/external_data/files/pages/articles/2016/511/meta/share_img_511.png" />
+<meta property="og:url" content="http://www.stdio.vn/articles/read/511/compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt" />
+<meta property="og:site_name" content="STDIO" />
+<meta property="og:description" content="Khi bạn sử dụng các hàm như printf, scanf, fopen, … thường sẽ thấy bị &quot;ép&quot; phải sử dụng printf_s, scanf_s, fopen_s, … và chúng ta sẽ thường thắc mắc là tại sao phải sử dụng printf_s thay vì printf? Sao ta không thể sử dụng được printf, …" />
+<meta property="fb:app_id" content="694952747229279" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-language" content="vi" />
+<meta name="google-site-verification" content="X2UPPTs9ZPtdwO7zU96ACDvA3NuoFxO1INxk5ZjHc2I" />
+<meta name="robots" content="index,follow" />
+<link type="text/css" rel="stylesheet" href="http://statics.stdio.vn/100/shared/font-awesome-4.6.3/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="http://statics.stdio.vn/100/shared/styles/img_avatars_sprite.css" />
+<link type="text/css" rel="stylesheet" href="/makeup/shared/css_styles.css" />
+<link type="text/css" rel="stylesheet" href="/makeup/pc/css_styles.css" />
+<link type="text/css" rel="stylesheet" href="/makeup/pc/css_articles.css"/>
+<link type="text/css" rel="stylesheet" href="http://statics.stdio.vn/100/shared/styles/css_constructor.css" />
+<link type="text/css" rel="stylesheet" href="http://statics.stdio.vn/100/shared/jBox-0.3.2/Source/jBox.css"/>
+<link type="text/css" rel="stylesheet" href="http://statics.stdio.vn/100/shared/replete-modal-1.4/css/animate.css"/>
+<link type="text/css" rel="stylesheet" href="http://statics.stdio.vn/100/shared/replete-modal-1.4/css/replete-modal.css"/>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/styles/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/jquery-plugins/jquery.unveil.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/styles/js_constructor.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/prettify/run_prettify.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/qrcode/qrcode.min.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/jquery-plugins/autogrow-textarea/jquery.autogrowtextarea.min.js"></script>
+<script type="text/javascript" src="/makeup/shared/js_script.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/jBox-0.3.2/Source/jBox.js"></script>
+<script type="text/javascript" src="http://statics.stdio.vn/100/shared/replete-modal-1.4/js/replete-modal.js"></script>
+
+<script>$(document).ready(function(){
+site.onReady('{"_PROFILE":1,"_PATH":"pc"}', 'articles', 'read', ["511"]);
+});
+</script>
+</head>
+<body>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-52045105-1', 'auto');
+ga('send', 'pageview');
+</script>
+<header class="wrapper_section wrapper_header">
+	<div id="id_wrapper_header_center" class="wrapper_section_center wrapper_header_center">
+		<div id="id_logo" class="head_logo"><a href="/"><img src="/makeup/shared/img_logo.png" title="STDIO" alt="STDIO" /></a></div>
+		<div class="wrapper_menu_left">
+			<!--<a class="button_nav" href="/"><i class="fa fa-home fa-fw"></i> Trang chủ</a>-->
+			<a class="button_nav_active" href="/articles"><i class="fa fa-file-text fa-fw"></i> Bài viết</a>			
+			<a class="button_nav" href="/news"><i class="fa fa-newspaper-o fa-fw"></i> Nhật ký</a>
+			<a class="button_nav" href="/training"><i class="fa fa-graduation-cap fa-fw"></i> Đào tạo</a>
+			<a class="button_nav" href="http://electronics.stdio.vn"><i class="fa fa-shopping-bag fa-fw"></i> Điện tử</a>
+			<a class="button_nav" href="/about"><i class="fa fa-info fa-fw"></i> STDIO?</a>
+			<!--<a class="button_nav" href="/contact"><i class="fa fa-envelope fa-fw"></i> Liên hệ</a>-->
+		</div>
+
+		<div class="wrapper_menu_right">
+						<a class="users_join" href="/users/join/articles~read~511~compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt">
+				<div class="icon_join"><i class="fa fa-sign-in fa-lg"></i></div>
+				<div class="text_signin">Đăng nhập</div>
+				<div class="text_signup">Đăng ký</div>
+			</a>
+					</div>
+	</div>
+</header>
+
+<section class="wrapper_section wrapper_introduction">
+	<div class="wrapper_section_center wrapper_introduction_center" id="id_wrapper_introduction_center">
+		<div class="intro_left"><a href="/" target="_self"><i class="fa fa-home fa-lg fa-fw"></i></a><a href="/articles" target="_self"> :: Bài viết</a></div>
+			</div>
+</section>
+<section class="wrapper_section wrapper_content" itemscope itemtype="http://schema.org/Article">
+	<div class="wrapper_section_center wrapper_content_center">
+		<div class="wrapper_content_column_1">
+
+			<div class="wrapper_content_column_element">
+	<a href="https://vi.wikipedia.org/wiki/Paul_Erd%C5%91s" title="Lập trình là một trong những ngành khó của toán học ứng dụng, nhà toán học nghèo vẫn còn tốt hơn nhà toán học thuần túy." alt="Lập trình là một trong những ngành khó của toán học ứng dụng, nhà toán học nghèo vẫn còn tốt hơn nhà toán học thuần túy." class="users_inspiration">
+		<div class="inspiration_icon"><i class="fa fa-lightbulb-o fa-3x" aria-hidden="true"></i></div>
+		<div class="inspiration_content">
+			Lập trình là một trong những ngành khó của toán học ứng dụng, nhà toán học nghèo vẫn còn tốt hơn nhà toán học thuần túy.			<span>Paul Erdos</span>
+		</div>
+	</a>
+</div>
+
+
+<div class="wrapper_content_column_element">
+	
+	
+	<a href="/users/join/articles~read~511~compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt" class="users_recommend_join">
+		<div class="recommend_icon">
+			<i class="fa fa-user-plus fa-3x" aria-hidden="true"></i><span>Tham gia STDIO</span>		</div>
+		<div class="recommend_content">
+			Đăng ký thành viên để cùng thảo luận, học hỏi tại STDIO.		</div>
+	</a>
+
+	
+</div>
+		
+			<div class="wrapper_content_column_element">
+				<div class="article_promo_ele">
+										<div class="title_base title_color_lightblue"><span><i class="fa fa-folder fa-fw"></i> Bài cùng loại</span></div>
+										<ul>
+																												<li><a href="/articles/read/101/khao-sat-file-sau-khi-preprocess-voi-visual-studio-c">
+							Khảo Sát File Sau Khi Preprocess Với Visual Studio C++ <i class="fa fa-caret-right"></i>
+						</a></li>
+																							<li><a href="/articles/read/75/huong-dan-tao-wizard-class-c-voi-visual-studio">
+							Hướng Dẫn Tạo Wizard Class (C++) Với Visual Studio <i class="fa fa-caret-right"></i>
+						</a></li>
+																							<li><a href="/articles/read/38/lam-viec-nhom-voi-team-foundation-server-tfs">
+							Làm Việc Nhóm Với Team Foundation Server (TFS) <i class="fa fa-caret-right"></i>
+						</a></li>
+																							<li><a href="/articles/read/34/co-ban-debug-trong-visual-studio">
+							Cơ Bản Debug Trong Visual Studio <i class="fa fa-caret-right"></i>
+						</a></li>
+																</ul>
+									</div>			
+			</div>
+			
+		</div>
+		<div class="wrapper_content_column_2">
+			<div class="wrapper_content_column_element">
+				<div class="search_form">
+	<input id="id_articles_keyword" type="text" class="search_text" placeholder="Tìm bài viết" maxlength="64"
+		onkeydown="articles.search(event)"
+				/>
+	<div onclick="articles.search()" class="search_button"><i class="fa fa-search fa-lg"></i></div>
+</div>			</div>
+			
+			
+			<div class="wrapper_content_column_element">
+				<div class="article_box">
+					<div class="article_meta">
+
+						<div class="meta_info_feature">
+		<a href="/articles/printing/511/compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt"
+		class="meta_info_button" title="Tạo bản in bài viết" alt="Tạo bản in bài viết">
+		<i class="fa fa-print fa-lg" aria-hidden="true"></i>	</a>
+	<div class="meta_info_button" title="Xem trên di động" alt="Xem trên di động">
+		<div id="jbox_modal"
+			onclick="jbox.create_modal('QR Code', 'qr_code')">
+			<i class="fa fa-fw fa-lg fa-mobile"></i> Xem trên di động		</div>
+	</div>
+		<div id="button_bookmark"
+		onclick="users_ajax.switch_bookmark_article(511)"
+		class="meta_info_button"
+		title="Bookmark bài viết" alt="Bookmark bài viết"	>
+		<i class="fa fa-fw fa-lg fa-bookmark-o"></i> BOOKMARK	</div>
+	<div id="button_follow"
+		onclick="users_ajax.switch_follow_article_comments(0)"
+		class="meta_info_button"
+		title="Theo dõi thảo luận" alt="Theo dõi thảo luận"	>
+		<i class="fa fa-fw fa-lg fa-bell-o"></i> Theo dõi thảo luận	</div>
+</div>
+						<h1 itemprop="name">Compiler Warning C4996 Và C Run-time Library Hay _CRT _SECURE_NO_WARNINGS (CRT)</h1>
+
+						<div class="article_meta_info">					
+							<a href="/articles/comments/articles-511/compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt">#511</a> •
+							<a href="/articles/index/48/visual-studio"><span itemprop="articleSection">Visual Studio</span></a> • 
+							<a href="/users/index/154/tran-thi-thu-hien">Trần Thị Thu Hiền</a> •
+							<i class="fa fa-clock-o"></i>
+							<span itemprop="datePublished" content="28/03/2016">
+							</span>
+							<span itemprop="dateModified" title="Date last updated" content="01/07/2016">
+								01/07/2016 19:08:17 
+							</span> •
+							<i class="fa fa-eye"></i> 1196						</div>
+					</div>
+					
+										<div class="article_sponsor" title="STDIO Training">
+						Bài viết được tài trợ bởi <a href="/training">STDIO Training</a>. Hướng dẫn lập trình các tính năng của ngôn ngữ lập trình C++. Nhấn <a href="/training#lap-trinh-cpp">vào đây</a> để xem các khóa đào tạo lập trình nói chung, lập trình C++ nói riêng của <a href="/training">STDIO Training</a>.					</div>
+									
+					<article class="article_content" itemprop="articleBody">
+						<h2>Giới thiệu</h2>
+
+<p>Compiler warning C4996 là một trong những cảnh báo thường gặp khi thao tác với các hàm có liên quan tới thư viện CRT của Visual Studio từ phiên bản 2012 trở đi. Tôi xin giới thiệu đôi nét về CRT và cách khắc phục cảnh báo C4996, hy vọng bài viết sẽ giúp ích cho các bạn giải quyết phần nào khó khăn trong bước đầu tiếp cận với Visual Studio phiên bản 2012 trở đi.</p>
+
+<h2>Tiền đề bài viết</h2>
+
+<p>Khi còn học khóa <a href="/training/program/2/cpp-nang-cao">C++ Nâng Cao</a> tại STDIO với anh <a href="/users/index/1/kevin-la">Kevin La</a>, tôi thấy rằng có nhiều bạn lặp đi lặp lại việc hỏi anh Kevin La về việc vì sao sử dụng printf, scanf, hoặc fopen trong stdio.h lại hay bị 1 lỗi cảnh báo về _CRT_SECURE_NO_WARNINGS.</p>
+
+<p>Để việc học tập của các lớp sau dễ dàng hơn và tôi muốn đóng góp giúp anh giảm bớt các công việc giảng dạy lại kiến thức này quá nhiều lần nên tôi quyết định chia sẻ lại những gì anh đã dạy tôi. Bên cạnh đó, đây sẽ là món quà sinh nhật tôi dành cho người thầy của mình, cho các học viên tại STDIO và cho STDIO.</p>
+
+<h2>Đối tượng hướng đến</h2>
+
+<p>Những bạn khi sử dụng phần mềm Visual Studio 2012 trở đi khi biên dịch bị mắc phải cảnh báo C4996 hoặc thấy được từ khóa tương tự như _CRT_SECURE_NO_WARNINGS.</p>
+
+<h2>Môi trường thử nghiệm</h2>
+
+<ul><li>Visual Studio 2012 (C++)</li>
+	<li>Visual Studio 2013 (C++)</li>
+	<li>Visual Studio 2015 (C++) - Chưa đảm bảo, bạn cần tự kiểm tra lại.</li>
+</ul><h2>Nguyên nhân dẫn đến cảnh báo C4996</h2>
+
+<p>CRT là một phần của thư viện chuẩn của C++ được kết hợp với thư viện chuẩn ISO C99, CRT quản lí các hàm có liên quan tới thời gian thực thi (thời gian chạy file .exe). Tức là các hàm này phải có sự tác động từ bên ngoài vào. Ví dụ: trong hàm scanf() sau khi bạn biên dịch xong, và cho chạy chương trình, thì thời gian mà hàm scanf chờ lấy dữ liệu vào chính là thời gian thực thi.</p>
+
+<p>Các hàm như vậy, khi compile có thể không có lỗi nhưng lại có thể phát sinh ra lỗi khi bạn chạy chương trình tùy thuộc vào dữ liệu.</p>
+
+<p>Ví dụ: trong hàm <span class="article_code">strcpy(a, b)</span> dùng sao chép chuỗi b qua chuỗi a, nhưng chuỗi a lại không đủ vùng nhớ để chứa hết chuỗi b, lúc đó chương trình sẽ bị lỗi và buộc phải dừng lại. Những lỗi về thời gian thực thi có thể gây ra hậu quả nghiêm trọng, vì file exe bị buộc dừng đột ngột, vẫn chưa chạy đến dòng lệnh đóng chương trình lại, máy tính sẽ nhận diện rằng file này vẫn còn đang mở và bạn không thể mở nó lại một lần nữa trừ khi tắt máy khởi động lại.</p>
+
+<p>Từ Visual Studio 2012 trở đi, thư viên CRT đã được bổ sung thêm các hàm mới với tính năng tương tự hàm gốc nhưng an toàn hơn tránh xảy ra các lỗi như trên, và các hàm gốc sẽ bị đánh dấu là không an toàn. Điều này dẫn đến, khi bạn sử dụng các hàm gốc, compiler sẽ bật cảnh báo lên, để nhắc nhở là hàm này sẽ có thể dẫn đến lỗi trong quá trình chạy. Đó chính là Compiler Warning C4996.</p>
+
+<h2>Các thể hiện cụ thể để dẫn đến cảnh báo</h2>
+
+<p>Khi bạn sử dụng các hàm như printf, scanf, fopen, … thường sẽ thấy bị "ép" phải sử dụng printf_s, scanf_s, fopen_s, … và chúng ta sẽ thường thắc mắc là tại sao phải sử dụng printf_s thay vì printf? Sao ta không thể sử dụng được printf, …</p>
+
+<p>Đây cũng có thể nói là thể hiện lớn nhất mà khi học tại STDIO, các học viên mới của STDIO thường thắc mắc.</p>
+
+<p><img alt="STDIO_C4996_Example1" src="/statics/external_data/files/pages/articles/2016/511/content/STDIO_C4996_Example1.PNG" /></p>
+
+<h2>Nên giải quyết vấn đề bằng cách nào?</h2>
+
+<p>Nếu bạn đọc kỹ phần cảnh báo này sẽ thấy Visual Studio cũng đã hướng dẫn chúng ta 2 hướng giải quyết vấn đề này.</p>
+
+<h3>Cách 1 - Dùng các hàm mới</h3>
+
+<p>Dùng hàm mới hơn, được đánh dấu là "safe" bằng cách thêm "_s" phía sau hàm gốc. Tuy nhiên, các hàm này chỉ có trên các sản phẩm từ Visual Studio, và sẽ không có trên các trình biên dịch khác như GCC, Xcode.</p>
+
+<p>Lợi ích và nhược điểm của cách này là code không cần giải quyết vấn đề, tuy nhiên nếu code này sử dụng cho đa nền tảng thì ta lại phải sửa lại code nếu sử dụng trên các nền tảng khác. Quan điểm của tôi là tôi không thích cách này vì tôi không muốn gánh hậu quả của việc code lại quá nhiều chỗ khi tôi làm việc trên iOS, Android hay Linux.</p>
+
+<h3>Cách 2 - Vẫn sử dụng các hàm gốc</h3>
+
+<p>Bạn có thể làm theo 1 trong 2 phương pháp dưới, bạn có thể tham khảo thêm trên trang web www.stdio.vn của chúng ta sẽ thấy thêm nhiều thông tin về 2 cách này. Nguyên tắc là ta phải thông báo được cho trình biên dịch biết và bỏ qua thông báo này, nghĩa là ta hiểu rất rõ những gì ta đang làm và chấp nhận rủi ro bằng "cờ" _CRT_SECURE_NO_WARNINGS.</p>
+
+<h4>Thay đổi Properties của project bằng GUI</h4>
+
+<p>Nhấp phải tại tên Project chọn Properties → Configuration → C/C++ → Preprocessor → trong mục Preprocessos Definitions phía bên phải thêm vào dòng _CRT_SECURE_NO_WARNINGS → OK.</p>
+
+<p><img alt="STDIO_C4996_Example2" src="/statics/external_data/files/pages/articles/2016/511/content/STDIO_C4996_Example2.PNG" /></p>
+
+<p>Như vậy ta “nhắn gửi” với trình biên dịch rằng, ta đang hiểu rõ những gì đang diễn ra và chấp nhận rủi ro nếu có.</p>
+
+<h4>Sử dụng definition directive - #define _CRT_SECURE_NO_WARNINGS</h4>
+
+<p>Trước khi sử dụng các hàm CRT như scanf hay printf, fopen, ... ta có thể đưa thêm cờ này vào. Tôi thường đặt nó ở đầu file.</p>
+
+<pre class="prettyprint linenums">
+#define _CRT_SECURE_NO_WARNINGS
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	printf("Thank STDIO");
+	printf("Thank STDIO Classmate")
+
+	return 0;
+}</pre>
+
+<p>Nói thêm - thông thường khi khởi tạo 1 project, tôi thường tạo 1 file tên là config.h và lưu toàn bộ các #define cần thiết trong đó và với nguyên tắc tất cả file.h khác được tạo ra sẽ phải include file config.h này vào và trong config.h đó tôi có thể để #define _CRT_SECURE_NO_WARNINGS.</p>
+
+<p><span class="article_highlight">FILE STDIO_config.h</span></p>
+
+<p>Tôi thích đặt tên là STDIO_config.h để tôi luôn nhớ đến STDIO, nhớ đến những gì mà tôi đã được học tại đây, và hơn cả STDIO dạy cho tôi lòng biết ơn những ai đã giúp đỡ tôi, ngoài ra để phân biệt nó nếu trong project lớn của tôi có các config.h khác từ các thư viện khác, bạn có thể đặt theo tên mà bạn muốn như config.h</p>
+
+<pre class="prettyprint linenums">
+#define _CRT_SECURE_NO_WARNINGS
+/*
+DEFINE MANY THINGS HERE
+*/</pre>
+
+<p><span class="article_highlight">FILE x.h</span></p>
+
+<p>File x.h là file có sử dụng các hàm CRT hoặc đơn thuần là theo nguyên tắc như tôi đặt ra là tất cả file.h sẽ phải include config.h</p>
+
+<pre class="prettyprint linenums">
+#include "STDIO_config.h"
+
+#include &lt;stdio.h&gt;
+
+int GetProjectNameById();
+
+/* and so on */</pre>
+
+<h4>Sử dụng #pragma để tắt cảnh báo C4996</h4>
+
+<p>Câu lệnh #pragma token-string cho phép ta chỉ thị cho compiler biên dịch chương trình theo một tùy chọn đặc biệt nào đó, mỗi token-string có một tham số và chức năng riêng biệt, các token-string này tùy thuộc vào từng compiler, ở đây tôi chỉ đề cập tới Compiler C/C++ của Microsoft. Để tắt cảnh báo C4996 chúng ta có thể sử dụng câu lệnh #pragma dưới đây. Tôi thường đặt nó ở đầu file.</p>
+
+<pre class="prettyprint linenums">
+#pragma warning(disable:4996)
+</pre>
+
+<p>Các bạn có thể tham khảo thêm về #pragma và các token-string có thể sử dụng trong Visual Studio trên MSDN với link sau:<a href="https://msdn.microsoft.com/en-us/library/d9x1s805.aspx">https://msdn.microsoft.com/en-us/library/d9x1s805.aspx</a>.</p>
+
+<h2>Lời kết</h2>
+
+<p>Quan điểm của tôi về việc kiểm soát tính đúng đắn của chương trình là do khả năng và kỹ thuật của mỗi nhà phát triển, do đó nếu có ràng buộc tốt hơn cũng là lợi điểm, tuy nhiên cần xét nhiều khía cạnh, chẳng hạn như vấn đề đa nền tảng.</p>
+
+<h2>Cám ơn</h2>
+
+<p>Cám ơn anh Kevin La và STDIO đã cho tôi những kiến thức nền tảng sâu sắc nhất mà tôi không thể tìm được ở đâu, các giải đáp thắc mắc về lập trình và đa nền tảng và Khoa học máy tính. Cám ơn các bạn tại STDIO Training đã giúp đỡ tôi thời gian qua. Cám ơn anh và các bạn đã dạy tôi rằng.</p>
+
+<blockquote>
+<p>Not only the jobs, but also the love - Không chỉ là công việc, mà còn là tình yêu<br />
+- Kevin La -</p>
+</blockquote>
+
+<p>Cám ơn anh <a href="/users/index/39/le-minh-trung">Lê Minh Trung</a> đã góp ý thêm cho bài viết hoàn thiện trong việc bổ sung thêm phần tạo viết 1 Macro #define _CRT_SECURE_NO_WARNINGS thay cho việc sử dụng giao diện thay đổi Properties. Tuy nhiên cần bổ sung thêm rằng bạn có thể chọn 1 trong 2 cách đều được, theo quan điểm cá nhân của tôi thì do "cờ" _CRT_SECURE_NO_WARNINGS không tồn tại trong các trình biên dịch khác ngoài Visual Studio nên ta config tại Properties của project sẽ tránh thêm những cờ thừa trong code khi chuyển đổi nền tảng.</p>
+
+<p>Cảm ơn chị <a href="http://www.stdio.vn/users/index/475/gordon-freeman">Gordon Freeman</a> đã góp ý thêm cho bài viết về việc sử dụng câu lệnh #pragma warning(disable:4996).</p>					</article>
+
+					<div class="article_tag">
+						<div class="ele_tag"><i class="fa fa-tags fa-fw"></i> <b>Tags</b></div>
+						<div class="ele_tag" id=""  title="">_crt_secure_no_warnings</div><div class="ele_tag" id=""  title="">lỗi printf_s</div><div class="ele_tag" id=""  title="">lỗi _scanf_s</div><div class="ele_tag" id=""  title="">lỗi fopen_s</div><div class="ele_tag" id=""  title="">compiler warning c4996</div>					</div>
+				</div>
+				
+				<div class="article_author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+					<div class="title_large title_color_lightblue"><span><i class="fa fa-user fa-fw"></i> Về tác giả</span></div>
+					<div class="author_about_box">
+						<div class="author_icon ico100_avatar_on">
+							<a href="/users/index/154/tran-thi-thu-hien">
+																<img src="http://www.stdio.vn/statics/external_users/users/154/avatar_256.png" width=100 height=100 title="Trần Thị Thu Hiền" alt="Trần Thị Thu Hiền" itemprop="image"/>
+															</a>
+						</div>
+							
+						<div class="author_about_content">		
+							<div class="author_meta">
+								<div class="author_meta_left">
+									<a class="author_title" href="/users/index/154/tran-thi-thu-hien">
+										<span itemprop="name">Trần Thị Thu Hiền</span>
+									</a>
+									<div class="author_job" itemprop="jobTitle">
+										Lập trình viên tại Gameloft									</div>
+								</div>
+								<div class="author_meta_right">
+									<a class="author_button" href="/users/index/154/tran-thi-thu-hien">Tìm hiểu tôi</a>
+								</div>
+							</div>
+							<div class="author_description">
+								Đam m&ecirc; khoa học nền tảng để giải quyết c&aacute;c vấn đề d&agrave;i hạn hơn. Th&ocirc;ng qua qu&aacute; tr&igrave;nh được học tập tại trường ĐH Khoa học tự nhi&ecirc;n v&agrave; qu&aacute; tr&igrave;nh đ&agrave;o tạo về lập tr&igrave;nh tại STDIO t&ocirc;i được động vi&ecirc;n để tạo ra c&aacute;c giải ph&aacute;p d&agrave;i hạn giải quyết c&aacute;c vấn đề cho tương lai dựa v&agrave;o nền tảng m&agrave; bản th&acirc;n m&igrave;nh c&oacute;.							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="comments_box">
+				<div class="title_large title_color_lightblue">
+                    <span> <i class="fa fa-comments fa-fw"></i> THẢO LUẬN</span>
+                </div>
+				<div class="comments">
+					<div class="comment_level1_entry">
+						<div class="comment_content">
+							<div class="comment_left_1">
+																<div class="ico64_avatar_off"></div>
+															</div>
+														<div class="comment_right">
+								<a href="/users/join/articles~read~511~compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt">Đăng nhập</a> để cùng nhau thảo luận. <a href="/users/join" target="_blank">Đăng ký</a> ngay nếu bạn chưa có tài khoản.							</div>
+													</div>
+						<div class="comment_feature_bar">
+														<div class="button_wide_disable right">Gửi</div>
+							<div class="button_wide right" onclick="STDIO.redirect('/users/join/articles~read~511~compiler-warning-c4996-va-c-run-time-library-hay-crt-secure-no-warnings-crt')">Đăng nhập</div>
+													</div>
+						<div class="comment_info_bar">
+							<div class="control_right">
+								*Sử dụng <a target="_blank" href="http://bugs.vn">BUGS</a> để chia sẻ mã nguồn trong bình luận.							</div>
+						</div>
+					</div>
+				</div>
+                <div class="comments_element">
+                    <div class="comment_segment_1 display_none" id="article_comments">
+                    </div>
+                </div>
+				<div class="comments" id="id_comments_load">
+					<div class="loading display_none">
+						<i class="fa fa-cog fa-spin fa-2x"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="wrapper_content_column_3">
+			<div class="wrapper_content_column_element">
+				<div class="title_base title_color_darkblue"><span>Nội dung bài viết</span></div>
+				<div class="anchor_horizontal left" id="id_articles_outline_anchor_id"></div>
+				<div class="outline_box" id="id_outline_box_id"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="qr_code" class="article_meta_right background_color_light_grey display_none">
+	<div class="meta_info_qrcode">
+		<div class="article_meta_info_right_ele pointer" id="qrcode"></div>
+	</div>
+</div><footer class="wrapper_section wrapper_footer">
+	<div id="id_wrapper_footer_center" class="wrapper_section_center wrapper_footer_center">
+		<div class="footer_nav_left">
+			<a href="/articles">Bài viết</a>
+			<a href="/news">Nhật ký</a>
+			<a href="/about">STDIO?</a>
+			<a href="/contact">Liên hệ</a>
+			<a href="http://statics.stdio.vn/100/shared/styles/pages/privacypolicy.html">Bảo mật thông tin</a>
+			<a href="http://statics.stdio.vn/100/shared/styles/pages/termsandconditions.html">Điều khoản sử dụng</a>
+		</div>
+		
+		<div class="footer_nav_right">	
+			© STDIO, 2013-2016		</div>
+		
+		<div class="footer_dmca">
+			<script src="//images.dmca.com/Badges/DMCABadgeHelper.min.js"></script> 
+ 					<a href="http://www.dmca.com/Protection/Status.aspx?ID=50d02f2b-905e-41a0-9f93-48c9d923b2d4" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="//images.dmca.com/Badges/dmca_protected_sml_120q.png?ID=50d02f2b-905e-41a0-9f93-48c9d923b2d4"  alt="DMCA.com Protection Status" /></a>	
+		</div>
+	</div>
+</footer>
+
+<div class="button_scroll2top" onclick="STDIO.scroll2(STDIO.TOP)"><i class="fa fa-chevron-up"></i></div>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+link wifi:https://n2.network-auth.com/splash/?mac=00%3A18%3A0A%3A02%3A15%3A9C&client_ip=10.96.232.186&client_mac=F4:B7:E2:C5:25:6D&vap=0&a=e6c790b5c2e4b1307265a91b47820af1b2aa02c3&b=236953&auth_version=5&key=67a53ceb6c957a4c3715e748565f708d4bd2e2ef&node_ip=6.2.21.156&acl_ver=P12072409V2&continue_url=http%3A%2F%2Fioe.go.vn%2F
+PASS: F3KY-F5PR, 4g7z-ywbk

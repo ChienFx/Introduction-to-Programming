@@ -1,0 +1,4 @@
+2x + 1 = 0; x = -0.5
+x^2 + 3 = 0; VO NGHIEM
+x^2 + x = 0; x1 = -1, x2 = 0
+x^2 + 3x + 7 = 0; VO NGHIEM

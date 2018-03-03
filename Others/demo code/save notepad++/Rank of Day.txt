@@ -1,0 +1,48 @@
+//Bai 104: Nhap 1 ngay va tinh xem do la ngay thu bao nhieu trong nam.
+#include <stdio.h>
+#include <conio.h>
+
+
+int main()
+{
+QuayLai:
+
+	printf("\nContinue?");
+	char Tiep = getch();
+	if(Tiep == 'c' || Tiep == 'C') goto QuayLai;
+	return 0;
+}
+
+int isLeap(int Month, int Year)
+{
+	if(Year % 100 == 0)
+		if( Year % 400 == 0) return 1;
+		return 0;
+	else if(Year % 4 == 0) return 1;
+	return 0;
+}
+
+int NumOfMonth(int Month, int Year)
+{
+	switch (Month)
+	{
+		case 1:case 3: case 5: case 7: case 8: case 10: case 12:
+			return 31;break;
+		case 4:case 6: case 9: case 11:
+			retrun 30; break;
+		default: 
+			if(isLeap(Month,Year)) return 28;
+			return 28;
+	}
+}
+
+int RankOfDay(int Day,int Month,int Year)
+{
+	int Rank = 0;
+	for(int i = 1; i <= Month-1; i++)
+	{
+		Rank+= NumOfMonth(Month,Year);
+	}
+	Rank+= Day;
+	return Rank;
+}

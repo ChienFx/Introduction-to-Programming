@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <conio.h>
+
+void main()
+{
+	int x1, x2, x3, x4,Sum_x;
+	printf("\nNhap x1, x2, x3, x4:");
+	scanf_s("%d %d %d %d", &x1, &x2, &x3, &x4);
+	Sum_x = x1 + x2 + x3 + x4;
+	printf("%d + %d + %d + %d = %d\n", x1, x2, x3, x4, Sum_x);
+
+	int Min = x1;	if (x2 < Min) Min = x2;
+	if (x3 < Min) Min = x3;
+	if (x4 < Min) Min = x4;
+
+	printf("\n So nho nhat: %d\n", Min);
+
+	int a, b;
+	printf("\nNhap a = ");
+	scanf_s("%d", &a);
+	
+	printf("\nNhap b = ");
+	scanf_s("%d", &b);
+
+	printf("a = %d\nb= %d", b, a);
+
+
+	float ChDai, ChRong, ChuVi, DienTich;
+	printf("\nNhap chieu dai: ");
+	scanf_s("%f",&ChDai);
+
+	printf("\nNhap chieu rong: ");
+	scanf_s("%f", &ChRong);
+	ChuVi = ChDai + ChRong;
+	DienTich = ChDai*ChRong;
+
+	printf("\nChu vi: %0.3f\nDien tich: %0.3f", ChuVi, DienTich);
+
+	_getch();
+
+}

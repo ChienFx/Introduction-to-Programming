@@ -1,0 +1,6 @@
+﻿  main_xuatAL.cpp
+d:\lap trinh\programming getting\demo code\chuỗi\xuất năm âm lịch\main_xuatal.cpp(26): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(283) : see declaration of 'scanf'
+d:\lap trinh\programming getting\demo code\chuỗi\xuất năm âm lịch\main_xuatal.cpp(30): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\conio.h(131) : see declaration of 'getch'
+  Xuất Năm Âm Lịch.vcxproj -> D:\Lap trinh\Programming Getting\demo code\Chuỗi\Debug\Xuất Năm Âm Lịch.exe

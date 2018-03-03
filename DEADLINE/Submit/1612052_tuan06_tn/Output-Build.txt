@@ -1,0 +1,4 @@
+﻿1>------ Build started: Project: Bai4, Configuration: Debug Win32 ------
+1>  bai4.cpp
+1>  Bai4.vcxproj -> D:\Lap trinh\C\Project\1612052_tuan06_tn\Debug\Bai4.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

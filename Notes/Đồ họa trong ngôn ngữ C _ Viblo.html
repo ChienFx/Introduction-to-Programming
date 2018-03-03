@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+<head>
+    <title>Đồ họa trong ngôn ngữ C | Viblo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="_token" content="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+<meta name="description" content="Giới thiệu
+Khi viết 1 chương trình thì ngoài những tiện ích mà nó mang lại, yếu tố đồ họa của chương trình đó cũng không kém phần quan trọng giúp chương trình dễ tiếp cận với người dùng.
+Với các chương trình của ngôn ngữ lập trình C cũng vậy. Mặc dù ít được nhắc tới, tuy nhiên, C cũng hỗ trợ các hàm đồ họa nằm trong thư viện graphics.h.
+Sau đây, chúng ta sẽ tìm hiểu về cách cài đặt thư viện graphics...">
+<meta name="keyword" content="C">
+<!-- meta tag for facebook -->
+<meta property="fb:app_id" content="313981178804207">
+<meta property="og:title" content="Đồ họa trong ngôn ngữ C | Viblo">
+<meta property="og:description" content="Giới thiệu
+Khi viết 1 chương trình thì ngoài những tiện ích mà nó mang lại, yếu tố đồ họa của chương trình đó cũng không kém phần quan trọng giúp chương trình dễ tiếp cận với người dùng.
+Với các chương trình của ngôn ngữ lập trình C cũng vậy. Mặc dù ít được nhắc tới, tuy nhiên, C cũng hỗ trợ các hàm đồ họa nằm trong thư viện graphics.h.
+Sau đây, chúng ta sẽ tìm hiểu về cách cài đặt thư viện graphics...">
+<meta property="og:url" content="https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+<meta property="og:image" content="https://viblo.asia/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/84ead7acdfed421972c94187c32468d4030b9046.png">
+<meta property="og:image:width" content="487">
+<meta property="og:image:height" content="354">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Viblo">
+<link rel="canonical" href="https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe" />
+<!-- meta tag for twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+<meta name="twitter:title" content="Đồ họa trong ngôn ngữ C | Viblo">
+<meta name="twitter:description" content="Giới thiệu
+Khi viết 1 chương trình thì ngoài những tiện ích mà nó mang lại, yếu tố đồ họa của chương trình đó cũng không kém phần quan trọng giúp chương trình dễ tiếp cận với người dùng.
+Với các chương trình của ngôn ngữ lập trình C cũng vậy. Mặc dù ít được nhắc tới, tuy nhiên, C cũng hỗ trợ các hàm đồ họa nằm trong thư viện graphics.h.
+Sau đây, chúng ta sẽ tìm hiểu về cách cài đặt thư viện graphics...">
+<meta name="twitter:image" content="https://viblo.asia/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/84ead7acdfed421972c94187c32468d4030b9046.png">
+<meta name="google-site-verification" content="SgcHIjAZzkSu9rh0MWrcFMNJv0SH1hCqgfuUwwcATZo">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<!-- Design -->
+<link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/css_min/layout_head.min.css?version=1468323350">
+
+
+<link media="all" type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&amp;subset=latin,vietnamese">
+
+
+
+<link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/css_min/post_show.min.css?version=1468323348">
+
+
+<link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/lib/codemirror.css">
+
+<link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/addon/fold/foldgutter.css">
+
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/3024-day.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/3024-night.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/ambiance.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/ambiance-mobile.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/base16-dark.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/base16-light.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/blackboard.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/cobalt.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/colorforth.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/eclipse.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/elegant.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/erlang-dark.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/lesser-dark.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/liquibyte.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/mbo.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/mdn-like.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/midnight.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/monokai.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/neat.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/neo.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/night.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/paraiso-dark.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/paraiso-light.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/pastel-on-dark.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/rubyblue.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/solarized.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/the-matrix.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/tomorrow-night-bright.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/tomorrow-night-eighties.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/twilight.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/vibrant-ink.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/xq-dark.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/xq-light.css">
+
+                 <link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/js/codemirror/theme/zenburn.css">
+
+
+</head>
+
+<body screen="SCREEN_POST_DETAIL">
+    <div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=313981178804207";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>    <!-- Google Tag Manager -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-60613670-1', 'auto');
+    ga('create', 'UA-60613670-2', 'auto', {'name': '2ndTracker'});
+    ga('send', 'pageview');
+    ga('2ndTracker.send', 'pageview');
+</script>
+<!-- End Google Tag Manager -->
+    <nav class="header-res">
+    <div class="container">
+        <div class="header-res-logo">
+            <a class="global-logo pull-left" href="https://viblo.asia/home/top-page" title="Viblo">
+                <img src="https://viblo.asia/img/logo-top-page.png" alt="logo">
+            </a>
+        </div>
+        <div class="header-res-menu">
+            <ul class="controls pull-right">
+                                    <li class="mobile-avatar" role="button" aria-controls="m2"
+                        aria-expanded="false" tabindex="0">
+                        <img src="https://viblo.asia/img/btn-header-avar.png">
+                    </li>
+                                <li class="mobile-menu" role="button" aria-controls="m1"
+                    aria-expanded="false" tabindex="0">
+                    <img src="https://viblo.asia/img/icon-menu2.png">
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="region_wrapper">
+    <div class="container">
+        <div id="m1" class="message" tabindex="-1" role="region" aria-labelledby="m1-label" aria-hidden="true">
+            <ul>
+                <li>
+                    <form method="POST" action="https://viblo.asia/search" accept-charset="UTF-8" role="search" id="header-search-form" class="search-container"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                    <input type="text" class="search-box"
+                           placeholder="Search" name="keyword">
+                    </form>
+                </li>
+                
+                
+
+                <li class="dropdown">
+                                            <a href="https://viblo.asia/groups" class="link-group">
+                            <span>Group</span>
+                        </a>
+                                    </li>
+               <!--
+                <li>
+                    <a href="https://viblo.asia/faq/questions" class="link-qna">Q&A</a>
+                </li>
+                -->
+
+                            </ul>
+        </div>
+        <div id="m2" class="message" role="region" aria-labelledby="m2-label" tabindex="-1" aria-hidden="true">
+            <ul>
+                                <li>
+                    <a href="javascript:void(0)" id="language-setting-res" class="link-language language-setting">
+                        Language
+                    </a>
+                </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/login" class="link-logout" id="viblo-login"
+                           data-toggle="modal" data-target="#viblo-login-dialog">
+                            Login
+                        </a>
+                    </li>
+                            </ul>
+        </div>
+        <div id="m3" class="message" role="region" aria-labelledby="m3-label" tabindex="-1" aria-hidden="true">
+            <div id="notification-content-res" class="notify-down">
+                <div class="wrap-notify-tabs">
+    <!-- Nav tabs -->
+    <div class="notify-tabs-header clearfix">
+        <ul class="nav nav-tabs notify-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#notifications-desktop-res"
+                    aria-controls="notifications-desktop-res"
+                    role="tab" data-toggle="tab">
+                    Notifications
+                    <span class="notify-count notifications">0</span>
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#request-desktop-res"
+                    aria-controls="request-desktop-res"
+                    role="tab" data-toggle="tab">
+                    Requests
+                    <span class="notify-count requests">0</span>
+                </a>
+            </li>
+        </ul>
+        <a class="notify-setting" href="https://viblo.asia/settings/notification">
+            <img src="/img/icon-setting5.png">
+        </a>  
+    </div>
+    <!-- /.notify-tabs-header -->
+
+    <div class="clearfix"></div>
+    <!-- Tab panes -->
+    <div class="tab-content notify-content">
+        <div role="tabpanel" class="tab-pane active" id="notifications-desktop-res">
+            <ul class="list-post" id="notification-list">
+                <li id="notify-loading" class='notify-loading entry-item hide'>
+                </li>
+            </ul>
+            <a href="https://viblo.asia/notifications" class="see-all">See all</a>
+        </div>
+        <!-- /#notifications -->
+        <div role="tabpanel" class="tab-pane" id="request-desktop-res">
+            <ul class="list-post" id="requests-list">
+                <li id="notify-loading" class='notify-loading entry-item hide'>
+                </li>
+            </ul>
+            <a href="https://viblo.asia/notifications" class="see-all">See all</a>
+        </div>
+        <!-- /#request -->
+    </div>
+</div>
+<!-- /.wrap-tabs -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Reponsive -->
+
+<nav class="navbar">
+    <div class="container header">
+        <div class="row">
+            <div class="left col-sm-5">
+                <a class="global-logo" href="https://viblo.asia"
+                   title="Viblo">
+                    <img src="https://viblo.asia/img/logo-top-page.png" alt="logo">
+                </a>
+                <div class="box-search">
+                    <form method="POST" action="https://viblo.asia/search" accept-charset="UTF-8" role="search" id="header-search-form" class="search-container"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                    <input type="text" id="search-box" class="search-box"
+                           placeholder="Search" name="keyword">
+                    <label for="search-box">
+                        <span><img class="search-icon" src="https://viblo.asia/img/btn-header-search.png"></span>
+                    </label>
+                    </form>
+                </div>
+                <ul class="menu-list">
+                                        <li class="dropdown">
+                        <a href="https://viblo.asia/groups"
+                           class="navbar-menu-groups to-all-group ">
+                            Group <span class="caret"></span>
+                        </a>
+                                            </li>
+                        <!--
+                    <li class = "active">
+                        <a href="https://viblo.asia/faq/questions">Q&A</a>
+                    </li>
+                    -->
+                </ul>
+            </div>
+            <div class="col-sm-7">
+                <div class="right">
+                <!--  Header label for php recruitment.
+                    <a href="http://bizdev.framgia.vn/jobs/tuyen-lap-trinh-vien-php-cho-du-an-viblo/" target="_blank" title="Viblo tuyển coder PHP">
+                        <div class="name-theme">
+                            <span class="recruitment">Viblo tuyển coder PHP</span>
+                        </div>
+                    </a> 
+                    -->
+                                        <div class="user-posts">
+                                            </div>
+                    <!--
+                    <div class="user-ranking">
+                        <img src="/img/user-ranking.png">
+                    </div>
+                    -->
+                                            <ul class="user-link">
+                            <li class="language">
+                                <a href="javascript:void(0)" id="language-setting" class="language-setting">
+                                    Language
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://viblo.asia/users/login" id="viblo-login"
+                                    data-toggle="modal" data-target="#viblo-login-dialog">
+                                    Login
+                                </a>
+                            </li>
+                        </ul>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="clearfix"></div>
+
+<div id="modal-language-settings-content"></div>
+
+<script type="text/javascript">
+    var isSetDefaultLang = 1;
+    var title = "Đồ họa trong ng&ocirc;n ngữ C | Viblo";
+    var notificationsCount = 0;
+</script>
+
+    <div id="wrapper">
+                <div id="container" class="container">
+            
+            <div id="pop-up" class="pop container-fluid">
+    <div class="close-popup-signup">
+        <a href="javascript:void(0)">x</a>
+    </div>
+    <div class="l-popup-register container">
+        <h3>There's more to see...</h3>
+        <p class="l-popup-login">Join us to find useful information required to improve your skill</p>
+        <button type="button" class="register" data-toggle="modal" data-target="#modal-popup-signup">
+            Register
+        </button>
+        <button type="button" class="login" data-toggle="modal" data-target="#modal-popup-login">
+            Login
+        </button>
+        <div class="modal fade" id="modal-popup-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog l-box-login" role="document">
+                <div class="modal-content">
+                    <div class="modal-header-login">Login</div>
+                    <div class="modal-body-login form-content">
+                        <p class="join">sign in with</p>
+                        <ul class="list-social-login">
+                            <li><a href="https://viblo.asia/socials/facebook" class="facebook"></a></li>
+                            <li><a href="https://viblo.asia/socials/google" class="google"></a></li>
+                            <li><a href="https://viblo.asia/socials/github" class="github"></a></li>
+                        </ul>
+                        <div class="l-or">
+                            <span>or</span>
+                        </div>
+                        <div class="message-error"></div>
+                        <form method="POST" action="https://viblo.asia/users/login" accept-charset="UTF-8" class="viblo-login-form" role="form"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                            <input name="return" type="hidden" value="https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+                            <input id="txtUsername" placeholder="User name or E-mail" class="form-control popup-email" name="username" type="text">
+                            <input class="form-control popup-pass" placeholder="Enter password" name="password" type="password" value="">
+                            <div class="l-check">
+                                <span class="check">
+                                    <input checked="checked" name="remember" type="checkbox" value="1"> Remember me
+                                </span>
+                                <a href="https://viblo.asia/password/remind" class="forgot">Forgot password!</a>
+                            </div>
+                            <input class="btn-login btn-submit-login" type="submit" value="Login">
+                        </form>
+                    </div>
+                    <div class="modal-footer-login">
+                        <p>Not member yet?</p>
+                        <button type="button" class="btn-register-modal">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-popup-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog l-box-register" role="document">
+                <div class="modal-content">
+                    <div class="modal-header-register">Register</div>
+                    <div class="modal-body-register form-content">
+                        <p class="join">sign in with</p>
+                        <ul class="list-social-register">
+                            <li><a href="https://viblo.asia/socials/facebook" class="facebook"></a></li>
+                            <li><a href="https://viblo.asia/socials/google" class="google"></a></li>
+                            <li><a href="https://viblo.asia/socials/github" class="github"></a></li>
+                        </ul>
+                        <div class="l-or">
+                            <span>or</span>
+                        </div>
+                        <div class="message-error"></div>
+                        <form method="POST" action="https://viblo.asia/users/signup" accept-charset="UTF-8" class="viblo-signup-form" role="form"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                            <input class="form-control yourname" placeholder="Your name" name="name" type="text">
+                            <input class="form-control username" placeholder="User name" name="username" type="text">
+                            <input class="form-control email" placeholder="Email address" name="email" type="text">
+                            <input class="form-control password" placeholder="Password" name="password" type="password" value="">
+                            <input class="form-control repassword" placeholder="Password confirmation" name="password_confirmation" type="password" value="">
+                            <div class="l-check">
+                                <div class="check">
+                                    <input type="checkbox" class="tos-check" name="tos">
+                                    <span>I agree to Viblo Terms of Service</span>
+                                </div>
+                                <a href ="https://viblo.asia/terms" class="seemore" target="_blank">
+                                    See more
+                                </a>
+                            </div>
+                            <input class="btn-register btn-signup-submit" type="submit" value="Sign up">
+                        </form>
+                    </div>
+                    <div class="modal-footer-register">
+                        <p>Already a member?</p>
+                        <button type="button" class="btn-login-modal">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="post-detail row">
+        <div class="col-md-9 col-lg-9 post-left">
+            <div class="post-body">
+                <p class="post-title break-word">Đồ họa trong ng&ocirc;n ngữ C</p>
+                <div class="tags author-tag">
+                    <div class="tag">
+                        <div class="tags">
+    <div class="tag-item">
+                                    <a class="c tag-name" href="https://viblo.asia/categories/c" title="C">C</a>
+                        </div>
+    <div class="tag-see-more" >
+        <a tabindex="0" class="other show-more-tag bs-docs-popover"
+           href="javascript:void(0);" data-trigger="focus"
+           data-toggle="popover"
+           data-content=''>...</a>
+    </div>
+</div>
+                    </div>
+                </div>
+                                <div class="box-post-info">
+                                        <div class="post-in-theme post-info">
+                                                    Published on
+                            <span>
+                                25th October, 2015
+                            </span> by
+                            <a href="https://viblo.asia/users/show/hoang.thi.tuan.dung" class="author-link-to-profile">
+                                <span>Tuấn Dung </span>
+                            </a>
+                                                                    </div>
+                    <div class="btn-group">
+                                                <a href="#" class="btn-report" id="report-post"
+                            data-post-id = "1938"
+                            data-title="Reason to report"
+                            data-message="<p>Why do you not want to see this?</p>"
+                            data-content='
+                                <label class="display-block" for="report-type-0">
+                                <input id="report-type-0" checked="checked" name="type" type="radio" value="1">
+                                This is a spam.</label><br>
+                                <label class="display-block" for="report-type-1">
+                                <input id="report-type-1" name="type" type="radio" value="2">
+                                Content violates Terms of use.</label><br>
+                                <label class="display-block" for="report-type-2">
+                                <input id="report-type-2" name="type" type="radio" value="3">
+                                Content violates harassment policy.</label>
+                            '
+                            data-report="Report">
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="share-social-vertical ">
+    <div class="fix-share">
+        <span>Share</span>
+        <a class="face-share" target="_blank"
+            href="http://www.facebook.com/sharer.php?u=https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe&title=Đồ họa trong ng&ocirc;n ngữ C">
+        </a>
+
+        <a class="google-share" target="_blank"
+            href="https://plus.google.com/share?url=https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+        </a>
+
+                <span class="toc">TOC</span>
+        <div class="dropdown menu-toc pull-left" style="display: block;">
+            <a class="menu-toc-title dropdown-toggle toc" href="javascript:void(0)"
+                id="dropdown-toc-menu" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-toc nav tocTreeContent" id="menuTocTree" aria-labelledby="dropdown-toc-menu"></ul>
+        </div>
+    </div>
+</div>                <div class="share-social share-top">
+    <div class="fix-share">
+        <span>Share</span>
+        <a class="face-share" target="_blank"
+            href="http://www.facebook.com/sharer.php?u=https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe&title=Đồ họa trong ng&ocirc;n ngữ C">
+        </a>
+
+        <a class="google-share" target="_blank"
+            href="https://plus.google.com/share?url=https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+        </a>
+
+                <span class="toc">TOC</span>
+        <div class="dropdown menu-toc pull-left" style="display: block;">
+            <a class="menu-toc-title dropdown-toggle toc" href="javascript:void(0)"
+                id="dropdown-toc-menu" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-toc nav tocTreeContent" id="menuTocTree" aria-labelledby="dropdown-toc-menu"></ul>
+        </div>
+    </div>
+</div>                                <div class="post-text-content" id="content">
+                    <section class="markdownContent cf break-word"><p><strong>Giới thiệu</strong></p>
+<p>Khi viết 1 chương trình thì ngoài những tiện ích mà nó mang lại, yếu tố đồ họa của chương trình đó cũng không kém phần quan trọng giúp chương trình dễ tiếp cận với người dùng.</p>
+<p>Với các chương trình của ngôn ngữ lập trình C cũng vậy. Mặc dù ít được nhắc tới, tuy nhiên, C cũng hỗ trợ các hàm đồ họa nằm trong thư viện <code>graphics.h</code>.</p>
+<p>Sau đây, chúng ta sẽ tìm hiểu về cách cài đặt thư viện graphics và các hàm đồ họa khả dụng trong C cũng như 1 số ví dụ của chúng.</p>
+<p><strong>I. Cài đặt thư viện graphics trong C</strong></p>
+<p><em><strong>a. Cài đặt với trình biên dịch Dev-C++ trong Window</strong></em></p>
+<ul><li>Download và cài đặt <a href="https://www.cs.colorado.edu/~main/bgi/dev-c++/devcpp-4.9.9.2_setup.exe">Dev-C++</a></li>
+<li>Download thư viện <a href="https://www.cs.colorado.edu/~main/bgi/dev-c++/graphics.h">graphics.h</a> lưu vào thư mục con include/ của thư mục Dev-C++ bạn đã cài đặt.</li>
+<li>Download thư viện <a href="https://www.cs.colorado.edu/~main/bgi/dev-c++/libbgi.a">libbgi.a</a> lưu vào thư mục con lib/ của thư mục Dev-C++.</li>
+<li>Tạo 1 new project để thực hành thao tác đồ họa trong C, ví dụ GraphicProject.</li>
+<li>
+<p>Trên thanh menu, click vào Project-&gt;Project Option. Chọn tab Parameters. Trong khung textbox Linker, copy và paste đoạn sau:</p>
+<pre><code>-lbgi
+-lgdi32
+-lcomdlg32
+-luuid
+-loleaut32
+-lole32</code></pre>
+<p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/84ead7acdfed421972c94187c32468d4030b9046.png" alt="h1.png" /></p>
+</li>
+<li>Click OK. </li>
+</ul><p><strong><em>b. Cài đặt trong linux</em></strong></p>
+<ul><li>Cài đặt các gói thư viện cần thiết</li>
+</ul><pre><code>sudo apt-get update
+
+sudo apt-get install libsdl-image1.2 libsdl-image1.2-dev guile-1.8 guile-1.8-dev libsdl1.2debian libart-2.0-dev libaudiofile-dev libesd0-dev libdirectfb-dev libdirectfb-extra libfreetype6-dev libxext-dev x11proto-xext-dev libfreetype6 libaa1 libaa1-dev libslang2-dev libasound2 libasound2-dev</code></pre>
+<ul><li>
+<p>Download <a href="http://www.mediafire.com/download/ayvb7gkzpsww3av/libgraph-1.0.2.tar.gz">libgraph</a></p>
+</li>
+<li>Copy file libgraph-1.0.2.tar.gz vào thư mục home rồi giải nén, sau đó chạy tiếp các lệnh sau:</li>
+</ul><pre><code>cd libgraph-1.0.2
+./configure
+sudo make
+sudo make install
+sudo cp /usr/local/lib/libgraph.* /usr/lib</code></pre>
+<ul><li>Cài đặt trình biên dịch C, ví dụ Geany (tương đối giống với Dev-C++).</li>
+</ul><p>Vậy là bước cài đặt để sử dụng thư viện graphics đã hoàn tất.</p>
+<p><strong>II. Các hàm đồ họa của C</strong></p>
+<p><strong><em>a. initgraph</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void initgraph(int *graphdriver, int *graphmode, char *pathtodriver);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Sử dụng để khởi tạo hệ thống đồ họa. Trong đó:</p>
+<table><thead><tr><th>Tham số</th>
+<th>Mô tả</th>
+</tr></thead><tbody><tr><td><em>pathtodriver</em></td>
+<td>Đường dẫn đến thư mục chứa các driver đồ hoạ</td>
+</tr><tr><td><em>graphdriver</em></td>
+<td>Card màn hình</td>
+</tr><tr><td><em>graphmode</em></td>
+<td>Mode màn hình</td>
+</tr></tbody></table><p>Tham số thứ 3 với Dev-C++ là: <code>C:\\TC\\BGI</code>, còn với trình biên dịch trong Linux là <code>NULL</code>. </p>
+<p><strong><em>b. closegraph</em></strong></p>
+<ul><li>Cấu trúc: </li>
+</ul><p><code>void closegraph();</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Hàm <code>closegraph</code> có chức năng đóng chế độ đồ họa, giải phóng tất cả bộ nhớ cấp phát bởi hệ thống đồ họa và phục hồi màn hình sang chế độ như trước khi gọi hàm <code>initgraph</code>.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include&amp;lt;graphics.h&amp;gt;
+#include&amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+   // TO DO (h&amp;agrave;m đồ họa)
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<p><strong><em>c. arc</em></strong></p>
+<ul><li>Cấu trúc: </li>
+</ul><p><code>void arc(int x, int y, int stangle, int endangle, int radius)</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Được sử dụng để vẽ 1 vòng cung với hàm tâm có tọa độ <code>(x, y)</code>, góc bắt đầu <code>stangle</code>, góc cuối <code>endangle</code> và bán kính cung <code>radius</code>. Hàm này cũng có thể được sử dụng để vẽ 1 hình tròn rỗng hoàn chỉnh nếu tổng góc bắt đầu và góc cuối là 360.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main() {
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   arc(100, 100, 0, 180, 100);
+   arc(305, 100, -90, 180, 100);
+   arc(510, 100, 0, 360, 100);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/0a5f965df38122d45e8fd2ee3bf63eb4de1dfd89.png" alt="h2.png" /></p>
+<p><em><strong>d. bar</strong></em></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code> void bar(int left, int top, int right, int bottom); </code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Hàm <code>bar</code> được sử dụng để vẽ 1 hình chữ nhật đặc 2 chiều. Các tham số <code>left</code>, <code>top</code>, <code>right</code>, <code>bottom</code> dùng để xác định tọa độ điểm trái trên và điểm phải dưới của hình chữ nhật.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+   bar(100, 100, 300, 300);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/f737626d71cc8a5f2dd60be5403f8c7c59b4fc15.png" alt="h22.png" /></p>
+<p><strong><em>e. bar3d</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code> void bar3d(int left, int top, int right, int bottom, int depth, int topflag); </code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Hàm <code>bar3d</code> dùng để vẽ hình chữ nhật 3 chiều. Cũng tương tự với hàm <code>bar</code>, hình chữ nhật 3 chiều có các tham số <code>left</code>, <code>top</code>, <code>right</code>, <code>bottom</code> để xác định tọa độ điểm trái trên và điểm phải dưới. Ngoài ra, còn có tham số <code>depth</code> xác định chiều cao và <code>top</code> để xác định xem hình chữ nhật có nắp hay không.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include&amp;lt;graphics.h&amp;gt;
+#include&amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   bar3d(100, 100, 200, 200, 20, 0);   
+   bar3d(310, 100, 410, 200, 20, 1);
+
+   getch();
+   closegraph();
+   return 0;
+}
+</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/6eac014284170b89e0ac4e1734cdc0ec629e251c.png" alt="h4.png" /></p>
+<p><strong><em>f. circle</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void circle(int x, int y, int radius);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Ngoài cách sử dụng <code>arc</code> để vẽ đường tròn rỗng, ta còn có 1 cách đơn giản hơn là sử dụng hàm <code>circle</code>. Hàm này sẽ vẽ đường tròn với tâm có tọa độ <code>(x, y)</code> và bán kính <code>radius</code>.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include&amp;lt;graphics.h&amp;gt;
+#include&amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   circle(300, 200, 150);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/3a040fdafe7477fa58d34238ea500eb8d9cbbc64.png" alt="h23.png" /></p>
+<p><strong><em>g. drawpoly</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void drawpoly( int num, int *polypoints );</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Dùng để vẽ đa giác rỗng. Với đa giác n đỉnh thì tham số <code>num</code> truyền vào phải là <code>num = (n+1)</code> và mảng chứa tọa độ các đỉnh <code>polypoints</code> sẽ cần truyền vào <code>(n+1)</code> cặp tọa độ đỉnh. Lưu ý, tọa độ đỉnh cuối cùng sẽ bằng với tọa độ của đỉnh đầu tiên.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm, points[] = {320, 150, 420, 300, 250, 300, 320, 150};
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+   // Vẽ tam gi&amp;aacute;c
+   drawpoly(4, points);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/63a5ee2addf246b062da9dcadd95cd744796e0f2.png" alt="h7.png" /></p>
+<p><strong><em>h. fillpoly</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void fillpoly( int num, int *polypoints );</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Dùng để vẽ đa giác đặc, các tham số y hệt với hàm vẽ đa giác rỗng <code>drawpoly</code> được mô tả ở trên.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm, points[] = {320, 150, 440, 340, 230, 340, 320, 150};
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   fillpoly(4, points);
+
+   getch();
+   closegraph();
+   return 0;
+}
+</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/e115ffb4cddb6c019a8213c21e6983d171ecbe1e.png" alt="h10.png" /></p>
+<p><strong><em>i. ellipse</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>ellipse(int x, int y, int stangle, int endangle, int xradius, int yradius);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Vẽ 1 elip rỗng với tọa độ tâm <code>(x, y)</code>, góc bắt đầu <code>stangle</code>, góc kết thúc <code>endangle</code> và 2 bán kính <code>xradius</code>, <code>yradius</code>.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include&amp;lt;graphics.h&amp;gt;
+#include&amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   ellipse(200, 200, 0, 360, 150, 100);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/511e53a18320dfad3e7b27c78ec02179eea4c8ce.png" alt="h8.png" /></p>
+<p><strong><em>j. fillellipse</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void fillellipse(int x, int y, int xradius, int yradius);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Vẽ elip đặc với tọa độ tâm <code>(x, y)</code> và 2 bán kính <code>xradius</code>, <code>yradius</code> tương ứng với 2 tọa độ x, y.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   fillellipse(200, 200, 150, 100);
+
+   getch();
+   closegraph();
+   return 0;
+}
+</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/353033b38b5a862ebb41011b06b2f76b7e10dfe0.png" alt="h9.png" /></p>
+<p><strong><em>k. floodfill</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void floodfill(int x, int y, int border);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Tô màu 1 hình kín chứa điểm <code>x</code>, <code>y</code> và border của hình kín có màu là <code>border</code>.</p>
+<p>Hàm floodfill không những phụ thuộc vào các tham số trên, mà còn phụ thuộc vào trạng thái màn hình.</p>
+<p>Nếu hình kín có mã màu bằng giá trị của border thì :</p>
+<ul><li>
+<p>Nếu điểm có tọa độ <code>(x, y)</code> nằm trong hình kín thì hình kín được tô màu.</p>
+</li>
+<li>Nếu điểm có tọa độ <code>(x, y)</code> nằm ngoài hình kín thì phần bên ngoài hình kín được tô màu.</li>
+</ul><p>Nếu màn hình không có hình kín như trên thì cả màn hình sẽ được tô màu.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   setcolor(RED);
+   circle(100, 100, 50);
+   floodfill(100, 100, RED);
+
+   getch();
+   closegraph();
+   return 0;
+}
+</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/67cd78c859e2c999e328f06d6058bfebd6c5df3c.png" alt="h11.png" /></p>
+<p><strong><em>l. getarccords</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void getarccoords(struct arccoordstype *var);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Hàm này sử dụng để lấy tọa độ của vòng cung được vẽ gần đây nhất. Trong đó, <code>arccoordstype</code> được định nghĩa như sau:</p>
+<pre><code>struct arccoordstype
+{
+   int x, y;                /*   tọa độ t&amp;acirc;m của v&amp;ograve;ng cung  */
+   int xstart, ystart;      /*   vị tr&amp;iacute; bắt đầu            */
+   int xend, yend;          /*   vị tr&amp;iacute; kết th&amp;uacute;c           */
+};</code></pre>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include&amp;lt;graphics.h&amp;gt;
+#include&amp;lt;conio.h&amp;gt;
+#include&amp;lt;stdio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+   struct arccoordstype a;
+   char arr[100];
+
+   initgraph(&amp;amp;gd, &amp;amp;gm,&amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   arc(250, 200, 0, 90, 100);
+   getarccoords(&amp;amp;a);
+
+   sprintf(arr, &amp;quot;(%d, %d)&amp;quot;, a.xstart, a.ystart);
+   outtextxy(360, 195, arr);
+
+   sprintf(arr, &amp;quot;(%d, %d)&amp;quot;, a.xend, a.yend);
+   outtextxy(245, 85, arr);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/346601c67c242eb5932d10e8f80d7c7cd5bee80f.png" alt="h12.png" /></p>
+<p><strong><em>m. settextstyle</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void settextstyle( int font, int direction, int charsize);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Sử dụng để thay đổi cách thức hiển thị văn bản ( đổi size chữ, font chữ, ...). </p>
+<ul><li>Các font chữ khả dụng:</li>
+</ul><pre><code>enum font_names 
+{ 
+   DEFAULT_FONT, 
+   TRIPLEX_FONT, 
+   SMALL_FONT, 
+   SANS_SERIF_FONT,
+   GOTHIC_FONT, 
+   SCRIPT_FONT, 
+   SIMPLEX_FONT, 
+   TRIPLEX_SCR_FONT,
+   COMPLEX_FONT, 
+   EUROPEAN_FONT, 
+   BOLD_FONT 
+};</code></pre>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm, x = 25, y = 25, font = 0;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   for (font = 0; font &amp;lt;= 10; font ++)
+   {
+      settextstyle(font, HORIZ_DIR, 1);
+      outtextxy(x, y, &amp;quot;Text with different fonts&amp;quot;);
+      y = y + 25;
+   }
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/094826893746e4c633954eb229c517672131807f.png" alt="h18.png" /></p>
+<p><strong><em>n. setlinestyle</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void setlinestyle( int linestyle, unsigned upattern, int thickness );</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Thiết lập các kiểu đường nét hiển thị.</p>
+<p>Các loại đường khả dụng:</p>
+<pre><code>enum line_styles 
+{ 
+   SOLID_LINE,   /*  Đường đặc      */
+   DOTTED_LINE,  /*  Đường chấm     */
+   CENTER_LINE,  /*  Đường gạch     */
+   DASHED_LINE,  /*  Đường gạch d&amp;agrave;i */
+   USERBIT_LINE  /*  Đường tự tạo   */
+};</code></pre>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm, c , x = 100, y = 50;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   for ( c = 0 ; c &amp;lt; 5 ; c++ )
+   {
+       setlinestyle(c, 0, 2);
+
+       line(x, y, x + 200, y);
+       y = y + 25;
+   }
+
+   getch(); 
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/a0c261ce3dc481403752a313e31c5f00f81958ab.png" alt="h19.png" /></p>
+<p><strong><em>o. setfillstyle</em></strong></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void setfillstyle( int pattern, int color);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Thiết lập mẫu tô và màu tô. Bảng mẫu tô khả dụng như sau:</p>
+<pre><code>enum fill_styles 
+{ 
+   EMPTY_FILL,     /* T&amp;ocirc; k&amp;iacute;n h&amp;igrave;nh bằng m&amp;agrave;u nền        */
+   SOLID_FILL,     /* T&amp;ocirc; k&amp;iacute;n h&amp;igrave;nh bằng m&amp;agrave;u thiết lập  */
+   LINE_FILL,      /* T&amp;ocirc; bằng đường kẻ ngang          */
+   LTSLASH_FILL,   /* T&amp;ocirc; bằng đường xi&amp;ecirc;n tr&amp;aacute;i mảnh    */
+   SLASH_FILL,     /* T&amp;ocirc; bằng đường xi&amp;ecirc;n tr&amp;aacute;i đậm     */
+   BKSLASH_FILL,   /* T&amp;ocirc; bằng đường xi&amp;ecirc;n phải đậm     */
+   LTBKSLASH_FILL, /* T&amp;ocirc; bằng đường xi&amp;ecirc;n phải mảnh    */
+   HATCH_FILL,     /* T&amp;ocirc; bằng đường chữ thập          */
+   XHATCH_FILL,    /* T&amp;ocirc; bằng đường caro              */
+   INTERLEAVE_FILL,/* T&amp;ocirc; bằng đường lượn s&amp;oacute;ng         */
+   WIDE_DOT_FILL,  /* T&amp;ocirc; bằng dấu chấm thưa           */
+   CLOSE_DOT_FILL, /* T&amp;ocirc; bằng dấu chấm mau            */
+   USER_FILL       /* T&amp;ocirc; bằng kiểu tự thiết lập       */
+};</code></pre>
+<p>Bảng màu quy định như sau:</p>
+<table><thead><tr><th>Color</th>
+<th>Value</th>
+</tr></thead><tbody><tr><td>BLACK</td>
+<td>0</td>
+</tr><tr><td>BLUE</td>
+<td>1</td>
+</tr><tr><td>GREEN</td>
+<td>2</td>
+</tr><tr><td>CYAN</td>
+<td>3</td>
+</tr><tr><td>RED</td>
+<td>4</td>
+</tr><tr><td>MAGENTA</td>
+<td>5</td>
+</tr><tr><td>BROWN</td>
+<td>6</td>
+</tr><tr><td>LIGHTGRAY</td>
+<td>7</td>
+</tr><tr><td>DARKGRAY</td>
+<td>8</td>
+</tr><tr><td>LIGHTBLUE</td>
+<td>9</td>
+</tr><tr><td>LIGHTGREEN</td>
+<td>10</td>
+</tr><tr><td>LIGHTCYAN</td>
+<td>11</td>
+</tr><tr><td>LIGHTRED</td>
+<td>12</td>
+</tr><tr><td>LIGHTMAGENTA</td>
+<td>13</td>
+</tr><tr><td>YELLOW</td>
+<td>14</td>
+</tr><tr><td>WHITE</td>
+<td>15</td>
+</tr></tbody></table><ul><li>Ví dụ:</li>
+</ul><pre><code>#include&amp;lt;graphics.h&amp;gt;
+#include&amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   setfillstyle(XHATCH_FILL, RED);
+   circle(100, 100, 50);
+   floodfill(100, 100, WHITE);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/1c62ca4111cbe8687a1957a514a6d62531a3e610.png" alt="h20.png" /></p>
+<p><em><strong>p. line</strong></em></p>
+<ul><li>Cấu trúc:</li>
+</ul><p><code>void line(int x1, int y1, int x2, int y2);</code></p>
+<ul><li>Mô tả:</li>
+</ul><p>Vẽ đường thẳng nối hai điểm bất kỳ có toạ độ <code>(x1, y1)</code> và <code>(x2, y2)</code>.</p>
+<ul><li>Ví dụ:</li>
+</ul><pre><code>#include &amp;lt;graphics.h&amp;gt;
+#include &amp;lt;conio.h&amp;gt;
+
+int main()
+{
+   int gd = DETECT, gm;
+
+   initgraph(&amp;amp;gd, &amp;amp;gm, &amp;quot;C:\\TC\\BGI&amp;quot;);
+
+   line(100, 100, 200, 200);
+
+   getch();
+   closegraph();
+   return 0;
+}</code></pre>
+<ul><li>Output:</li>
+</ul><p><img src="/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/5906effaaed5a7b67dfb870b661b3a16b72cb67a.png" alt="h21.png" /></p>
+<p>Còn 1 số hàm đồ họa khác, tuy nhiên, để tránh dài dòng, mình tổng hợp luôn vào 1 bảng sau để tiện theo dõi:</p>
+<table><thead><tr><th>Tên hàm</th>
+<th>Cấu trúc</th>
+<th>Mô tả</th>
+</tr></thead><tbody><tr><td>cleardevice</td>
+<td><code>void cleardevice();</code></td>
+<td>Xóa màn hình trong chế độ đồ họa và set vị trí hiện tại về tọa độ (0,0).</td>
+</tr><tr><td>getdrivername</td>
+<td><code>void getdrivername();</code></td>
+<td>Trả về 1 con trỏ đến graphics driver hiện tại</td>
+</tr><tr><td>getmaxcolor</td>
+<td><code>int getmaxcolor();</code></td>
+<td>Trả về số màu tối đa của màn hình</td>
+</tr><tr><td>getmaxx</td>
+<td><code>int getmaxx();</code></td>
+<td>Trả về tọa độ x lớn nhất của màn hình</td>
+</tr><tr><td>getmaxy</td>
+<td><code>int getmaxy();</code></td>
+<td>Trả về tọa độ y lớn nhất của màn hình</td>
+</tr><tr><td>getx</td>
+<td><code>int getx();</code></td>
+<td>Trả về vị trí x hiện tại của con trỏ</td>
+</tr><tr><td>gety</td>
+<td><code>int gety();</code></td>
+<td>Trả về vị trí y hiện tại của con trỏ</td>
+</tr><tr><td>graphdefaults</td>
+<td><code>void graphdefaults();</code></td>
+<td>Reset tất cả các cài đặt graphics về trạng thái default</td>
+</tr><tr><td>grapherrormsg</td>
+<td><code>char *grapherrormsg( int errorcode );</code></td>
+<td>Trả về message lỗi</td>
+</tr><tr><td>lineto</td>
+<td><code>void lineto(int x, int y);</code></td>
+<td>Vẽ 1 đường thẳng từ vị trí hiện tại đến điểm có tọa độ <code>(x, y)</code></td>
+</tr><tr><td>linerel</td>
+<td><code>linerel(x, y);</code></td>
+<td>Vẽ 1 đường thẳng từ vị trí hiện tại <code>(dx, dy)</code> đến điểm <code>(dx + x, dy + y)</code></td>
+</tr><tr><td>moveto</td>
+<td><code>void moveto(int x, int y);</code></td>
+<td>Di chuyển vị trí hiện tại đến vị trí có tọa độ <code>(x, y)</code></td>
+</tr><tr><td>moverel</td>
+<td><code>void moverel(int x, int y);</code></td>
+<td>Di chuyển vị trí hiện tại 1 khoảng dx = dx + y, dy = dy + y</td>
+</tr><tr><td>outtext</td>
+<td><code>void outtext(char *string);</code></td>
+<td>Hiển thị chuỗi <code>string</code> ở vị trí hiện tại</td>
+</tr><tr><td>outtextxy</td>
+<td><code>void outtextxy(int x, int y, char *string);</code></td>
+<td>Hiển thị chuỗi <code>string</code> ở vị trí tọa độ <code>(x, y)</code></td>
+</tr><tr><td>pieslice</td>
+<td><code>void pieslice (int x, int y, int stangle, int endangle, int radius);</code></td>
+<td>Vẽ hình quạt tròn đặc với mẫu hiện tại</td>
+</tr><tr><td>getimage</td>
+<td><code>void getimage(int left, int top, int right, int bottom, void *bitmap);</code></td>
+<td>Lưu trữ ảnh bit vào bộ nhớ</td>
+</tr><tr><td>putimage</td>
+<td><code>void putimage(int left, int top, void *ptr, int op);</code></td>
+<td>Xuất ra 1 ảnh bit lên màn hình</td>
+</tr><tr><td>imagesize</td>
+<td><code>unsigned int imagesize(int left, int top, int right, int bottom);</code></td>
+<td>Trả về số byte cần thiết để lưu trữ 1 ảnh</td>
+</tr><tr><td>getpixel</td>
+<td><code>int getpixel(int x, int y);</code></td>
+<td>Trả lại màu tại điểm có tọa độ <code>(x, y)</code></td>
+</tr><tr><td>putpixel</td>
+<td><code>void putpixel(int x, int y, int color);</code></td>
+<td>Vẽ điểm có tọa độ <code>(x, y)</code> với màu <code>color</code></td>
+</tr><tr><td>rectangle</td>
+<td><code>void rectangle(int left, int top, int right, int bottom);</code></td>
+<td>Vẽ hình chữ nhật rỗng</td>
+</tr><tr><td>sector</td>
+<td><code>void sector( int x, int y, int stangle, int endangle, int xradius, int yradius);</code></td>
+<td>Vẽ hình quạt elip</td>
+</tr><tr><td>getbkcolor</td>
+<td><code>int getbkcolor();</code></td>
+<td>Trả về màu nền hiện tại</td>
+</tr><tr><td>setbkcolor</td>
+<td><code>void setbkcolor(int color);</code></td>
+<td>Thiết lập màu nền</td>
+</tr><tr><td>getcolor</td>
+<td><code>int getcolor();</code></td>
+<td>Trả về màu vẽ hiện tại</td>
+</tr><tr><td>setcolor</td>
+<td><code>void setcolor(int color);</code></td>
+<td>Thiết lập màu vẽ</td>
+</tr><tr><td>setviewport</td>
+<td><code>void setviewport(int left, int top, int right, int bottom, int clip);</code></td>
+<td>Hạn chế vẽ trên 1 khu vực cụ thể</td>
+</tr><tr><td>textheight</td>
+<td><code>int textheight(char *string);</code></td>
+<td>Trả về độ dài theo pixel của chuỗi.</td>
+</tr><tr><td>textwidth</td>
+<td><code>int textwidth(char *string);</code></td>
+<td>Trả về độ rộng theo pixel của chuỗi.</td>
+</tr></tbody></table><p><strong>III. Một số chương trình ứng dụng</strong></p>
+<p>Bạn có thể tham khảo thêm 1 số chương trình ứng dụng thư viện graphics.h trong <a href="http://www.programmingsimplified.com/c-graphics-programming-tutorial">C graphics programs</a>.</p>
+<p><strong>III. Tài liệu tham khảo</strong></p>
+<ul><li><a href="http://www.programmingsimplified.com/c/graphics.h">Functions of graphics.h</a></li>
+</ul></section>
+                </div>
+                                            </div>
+                        <div class="row helpful-question">
+                                <p class="helful-detail">
+                    <span>Do you think this post is helpful?</span>
+                    <a type="button" id="btn-helpful"
+                        class="btn btn-xs helpful-button "
+                        data-helpful="1">
+                        Yes (0)
+                    </a>
+                    <a type="button" id="btn-not-helpful"
+                        class="btn btn-xs helpful-button "
+                        data-helpful="0">
+                        No (0)
+                    </a>
+                </p>
+                <p class="voted">
+                                    </p>
+            </div>
+            <div class="share-social share-bottom">
+    <div class="fix-share">
+        <span>Share</span>
+        <a class="face-share" target="_blank"
+            href="http://www.facebook.com/sharer.php?u=https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe&title=Đồ họa trong ng&ocirc;n ngữ C">
+        </a>
+
+        <a class="google-share" target="_blank"
+            href="https://plus.google.com/share?url=https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+        </a>
+
+                <span class="toc">TOC</span>
+        <div class="dropdown menu-toc pull-left" style="display: block;">
+            <a class="menu-toc-title dropdown-toggle toc" href="javascript:void(0)"
+                id="dropdown-toc-menu" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-toc nav tocTreeContent" id="menuTocTree" aria-labelledby="dropdown-toc-menu"></ul>
+        </div>
+    </div>
+</div>            <div class="box-comment">
+                <div class="write-comment">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Write your comment</p>
+                        </div>
+                        <div class="col-md-3 pull-right text-right">
+                            <div data-toggle="modal" data-target="#myModal" class="fake-link markdown-help">
+                                <img src="/img/markdown-icon1.png" class="markdown-icon"> Markdown help
+                            </div>
+                        </div>
+                    </div>
+                                            <div class="text-warning text-center">
+                            Please log in to post comment. Click <a href="https://viblo.asia/users/login/https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe" data-toggle="modal" data-target="#viblo-login-dialog">here</a> to login.
+                        </div>
+                                    </div>
+                <div class="list-comment">
+                                        <div class="last-comment"></div>
+                </div>
+                            </div>
+                    </div>
+        <div class="col-md-3 col-lg-3 post-right">
+            <div class="bloger-like">
+                <div class="list-number-social">
+                    <div class="info-number">
+                        <span id="stockedCount">1</span>
+                        <p class="">Clip</p>
+                    </div>
+                    <div class="info-number">
+                        <span id="commentCount">0</span>
+                        <p class="">Comment</p>
+                    </div>
+                    <div class="info-number">
+                        <span id="viewCount">541</span>
+                        <p class="">Views</p>
+                    </div>
+                </div>
+                                <ul class="bloger-list stockUsers">
+                                        <li class="user_8243 user-favorite-list">
+                                                    <a href="https://viblo.asia/users/show/nhungmin" title="nhung pham"
+                                style="background: url(https://lh6.googleusercontent.com/-S3kZoOfzaVY/AAAAAAAAAAI/AAAAAAAAABw/ZI7wbQ0xWvs/photo.jpg)">
+                            </a>
+                                            </li>
+                                                        </ul>
+                <div id="modal-list-stocked-users"></div>
+            </div>
+            <div class="post-author">
+                <div class="img-name">
+                    <a href="https://viblo.asia/users/show/hoang.thi.tuan.dung" class="author-link-to-profile"><img src="https://viblo.asia/uploads/images/5a591e2a864b8a46ccb2ad59c8418ca8076aafc6/c52eea50c9e39874b098ab6a31e12873882c7b5e.png"></a>
+                </div>
+                <div class="box-info-author break-word">
+                    Tuan Dung
+                    <a href="https://viblo.asia/users/show/hoang.thi.tuan.dung" class="email break-word author-link-to-profile">@hoang.thi.tuan.dung</a>
+                    <div class="btn-post-follow">
+                        <a class="btn-post-r" href="https://viblo.asia/users/show/hoang.thi.tuan.dung">
+                            20
+                        </a>
+                        <span class="divide">|</span>
+                        <a class="btn-follow-r" href="https://viblo.asia/users/followers/hoang.thi.tuan.dung">
+                            <span class="number-follow">4</span>
+                        </a>
+                                                <div class="clear-both"></div>
+                    </div>
+                </div>
+            </div>
+                                    <div class="box-top-post box-more-post">
+                <p class="title-right">Popular posts</p>
+                <div class="list-top-post list-more-post">
+                                                                                                        <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "4" href="https://viblo.asia/NguyenThiHuyenCham/posts/3ZabG9VkvzY6">
+
+                                        Kỹ năng HORENSO
+                                    </a>
+                                                                            <a class="name-author" number = "4" href="https://viblo.asia/users/show/NguyenThiHuyenCham">HuyenCham&nbsp;-&nbsp;
+                                            <span>20th March, 2015</span>
+                                        </a>
+                                                                    </div>
+                                                                                                                <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "6" href="https://viblo.asia/Thanh/posts/eBYjv4EPRxpV">
+
+                                        M&ocirc; h&igrave;nh Agile trong ph&aacute;t triển v&agrave; kiểm thử phầm mềm
+                                    </a>
+                                                                            <a class="name-author" number = "6" href="https://viblo.asia/users/show/Thanh">Thanh&nbsp;-&nbsp;
+                                            <span>26th March, 2015</span>
+                                        </a>
+                                                                    </div>
+                                                                                                                <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "7" href="https://viblo.asia/nguyen.van.ngoc/posts/eBYjv4mgRxpV">
+
+                                        ReactJS cho l&iacute;nh mới t&ograve; te
+                                    </a>
+                                                                            <a class="name-author" number = "7" href="https://viblo.asia/users/show/nguyen.van.ngoc">Ngoc Nguyen&nbsp;-&nbsp;
+                                            <span>25th May, 2015</span>
+                                        </a>
+                                                                    </div>
+                                                                                                                <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "10" href="https://viblo.asia/hungbaby/posts/2p1PvQN9Rldr">
+
+                                        T&igrave;m hiểu về Stored-Procedure &amp; Trigger trong SQL
+                                    </a>
+                                                                            <a class="name-author" number = "10" href="https://viblo.asia/users/show/hungbaby">Bach Dang Hung&nbsp;-&nbsp;
+                                            <span>30th July, 2015</span>
+                                        </a>
+                                                                    </div>
+                                                                                                                <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "13" href="https://viblo.asia/nguyen.thi.hong.nhung/posts/5y8Rr6dNRob3">
+
+                                        Hướng dẫn tạo Test Case (cơ bản)
+                                    </a>
+                                                                            <a class="name-author" number = "13" href="https://viblo.asia/users/show/nguyen.thi.hong.nhung">Nguyễn Thị Hồng Nhung&nbsp;-&nbsp;
+                                            <span>17th May, 2016</span>
+                                        </a>
+                                                                    </div>
+                                                                                                                <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "17" href="https://viblo.asia/le.dinh.minh/posts/mrDGMbyOezL">
+
+                                        [Angular] b&agrave;i 2, IN OUT trong AngularJS 
+                                    </a>
+                                                                            <a class="name-author" number = "17" href="https://viblo.asia/users/show/le.dinh.minh">Le Dinh Minh&nbsp;-&nbsp;
+                                            <span>31st July, 2016</span>
+                                        </a>
+                                                                    </div>
+                                                                                                                <div class="post-title break-word top-post-detail">
+                                    <a class="title break-word popular_posts_detail" number = "19" href="https://viblo.asia/hcminh901/posts/qzakzdPEGyO">
+
+                                        Để ph&ograve;ng tr&aacute;nh code &quot;thối&quot;, h&atilde;y đảm bảo 7 quy tắc sau 
+                                    </a>
+                                                                            <a class="name-author" number = "19" href="https://viblo.asia/users/show/hcminh901">Hoàng Công Minh &nbsp;-&nbsp;
+                                            <span>10th August, 2016</span>
+                                        </a>
+                                                                    </div>
+                                                                                        </div>
+            </div>
+                        <div class="box-top-post">
+                <p class="title-right">Related posts</p>
+                <div class="list-top-post">
+                                            <div class="row top-post-detail">
+                            <a class="col-sm-4 col-md-4 col-lg-4 top-post-img related_posts_detail"
+                                href="https://viblo.asia/TienNM87/posts/AeJ1vOwBvkby" number="1">
+                                <img src="https://viblo.asia/img/blank.png" style="background: url(https://viblo.asia/uploads/images/2a9e862c63b38ab0e31f3d8e05c1d7049c21dbc6/9d81947a084b78594480caee8295fe57490d6744.png)">
+                            </a>
+                            <div class="col-sm-8 col-md-8 col-lg-8 top-post-content break-word">
+                                <a class="title break-word related_posts_detail" number = "1"  href="https://viblo.asia/TienNM87/posts/AeJ1vOwBvkby" title="Hướng dẫn làm game với OpenGL - Phần 1 : Giới thiệu OpenGL">Hướng dẫn l&agrave;m game với OpenGL - Phần 1 : Giới thiệu OpenGL</a>
+                                <a href="https://viblo.asia/users/show/TienNM87" class="name"
+                                   title="&lt;a href=&quot;https://viblo.asia/users/show/TienNM87&quot;&gt;Nguyen Minh Tien&lt;/a&gt;">Nguyen Minh Tien</a>
+                            </div>
+                        </div>
+                                            <div class="row top-post-detail">
+                            <a class="col-sm-4 col-md-4 col-lg-4 top-post-img related_posts_detail"
+                                href="https://viblo.asia/minhp/posts/KAyQMpl8M0Ek" number="2">
+                                <img src="https://viblo.asia/img/blank.png" style="background: url(https://viblo.asia/uploads/images/3a64d4330912bf3ebb7cd6708adab3af76633072/a2963a31d4ca755c0654705b3d2ae15f023a0e2b.jpg)">
+                            </a>
+                            <div class="col-sm-8 col-md-8 col-lg-8 top-post-content break-word">
+                                <a class="title break-word related_posts_detail" number = "2"  href="https://viblo.asia/minhp/posts/KAyQMpl8M0Ek" title="Vấn đề tương thích với iOS 9 – những việc tôi nghĩ chúng ta cần làm">Vấn đề tương th&iacute;ch với iOS 9 &ndash; những việc t&ocirc;i nghĩ ch&uacute;ng ta cần l&agrave;m</a>
+                                <a href="https://viblo.asia/users/show/minhp" class="name"
+                                   title="&lt;a href=&quot;https://viblo.asia/users/show/minhp&quot;&gt;Phan Hoang Minh&lt;/a&gt;">Phan Hoang Minh</a>
+                            </div>
+                        </div>
+                                            <div class="row top-post-detail">
+                            <a class="col-sm-4 col-md-4 col-lg-4 top-post-img related_posts_detail"
+                                href="https://viblo.asia/hcminh901/posts/PjxMeVjEG4YL" number="3">
+                                <img src="https://viblo.asia/img/blank.png" style="background: url(https://viblo.asia/img/categories/320/android.png)">
+                            </a>
+                            <div class="col-sm-8 col-md-8 col-lg-8 top-post-content break-word">
+                                <a class="title break-word related_posts_detail" number = "3"  href="https://viblo.asia/hcminh901/posts/PjxMeVjEG4YL" title="[slide] Định nghĩa về Code tốt ">[slide] Định nghĩa về Code tốt </a>
+                                <a href="https://viblo.asia/users/show/hcminh901" class="name"
+                                   title="&lt;a href=&quot;https://viblo.asia/users/show/hcminh901&quot;&gt;Ho&agrave;ng C&ocirc;ng Minh &lt;/a&gt;">Ho&agrave;ng C&ocirc;ng Minh </a>
+                            </div>
+                        </div>
+                                            <div class="row top-post-detail">
+                            <a class="col-sm-4 col-md-4 col-lg-4 top-post-img related_posts_detail"
+                                href="https://viblo.asia/hcminh901/posts/3OEqGj3lv9bL" number="4">
+                                <img src="https://viblo.asia/img/blank.png" style="background: url(https://viblo.asia/uploads/images/3da5641295d0d53b7006f2ec2405290891ed749b/27f2ba67692b0d56451f1c3b6284c9e8eae6307e.png)">
+                            </a>
+                            <div class="col-sm-8 col-md-8 col-lg-8 top-post-content break-word">
+                                <a class="title break-word related_posts_detail" number = "4"  href="https://viblo.asia/hcminh901/posts/3OEqGj3lv9bL" title="Những điều bạn nên nhớ để viết code tốt">Những điều bạn n&ecirc;n nhớ để viết code tốt</a>
+                                <a href="https://viblo.asia/users/show/hcminh901" class="name"
+                                   title="&lt;a href=&quot;https://viblo.asia/users/show/hcminh901&quot;&gt;Ho&agrave;ng C&ocirc;ng Minh &lt;/a&gt;">Ho&agrave;ng C&ocirc;ng Minh </a>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+                    </div>
+        <div class="clearfix"></div>
+    </div>
+    <div id="modal-list-group-users"></div>
+    <div class="modal fade modal-center" id="modal-code">
+    <div class="modal-dialog modal-inner modal-dialog-code">
+        <div class="modal-content modal-content-code">
+            <button type="button" class="close close-dialog-code" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+
+            <div class="modal-body modal-body-code">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        </div>
+        <div id="footer">
+            <footer>
+    <a id="back-to-top" class="btn-top" href="javascript:void()"></a>
+    <div class="container">
+        <div class="col-sm-3 col-md-3 col-lg-3 box-footer facebook-footer">
+            <p class="title-box">Facebook</p>
+            <div class="fb-page" data-href="https://www.facebook.com/viblo.asia" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="https://www.facebook.com/viblo.asia">
+                        <a href="https://www.facebook.com/viblo.asia">Viblo</a>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-md-3 col-lg-3 box-footer tag-footer">
+            <p class="title-box">Tag</p>
+            <ul class="box-tag">
+                                    <li class="ruby category-active">
+                        <a href="https://viblo.asia/categories/ruby">Ruby</a>
+                    </li>
+                                    <li class="rails category-active">
+                        <a href="https://viblo.asia/categories/rails">Rails</a>
+                    </li>
+                                    <li class="javascript category-active">
+                        <a href="https://viblo.asia/categories/javascript">JavaScript</a>
+                    </li>
+                                    <li class="android category-active">
+                        <a href="https://viblo.asia/categories/android">Android</a>
+                    </li>
+                                    <li class="ios category-active">
+                        <a href="https://viblo.asia/categories/ios">iOS</a>
+                    </li>
+                                    <li class="php category-active">
+                        <a href="https://viblo.asia/categories/php">PHP</a>
+                    </li>
+                                    <li class="qa category-active">
+                        <a href="https://viblo.asia/categories/qa">QA</a>
+                    </li>
+                                    <li class="testing category-active">
+                        <a href="https://viblo.asia/categories/testing">Testing</a>
+                    </li>
+                                    <li class="java category-active">
+                        <a href="https://viblo.asia/categories/java">Java</a>
+                    </li>
+                                    <li class="html category-active">
+                        <a href="https://viblo.asia/categories/html">HTML</a>
+                    </li>
+                                    <li class="swift category-active">
+                        <a href="https://viblo.asia/categories/swift">Swift</a>
+                    </li>
+                                    <li class="angularjs category-active">
+                        <a href="https://viblo.asia/categories/angularjs">AngularJS</a>
+                    </li>
+                                    <li class="jquery category-active">
+                        <a href="https://viblo.asia/categories/jquery">jQuery</a>
+                    </li>
+                                    <li class="laravel category-active">
+                        <a href="https://viblo.asia/categories/laravel">Laravel</a>
+                    </li>
+                                    <li class="unity category-active">
+                        <a href="https://viblo.asia/categories/unity">Unity</a>
+                    </li>
+                                    <li class="net category-active">
+                        <a href="https://viblo.asia/categories/net">.NET</a>
+                    </li>
+                                    <li class="game category-active">
+                        <a href="https://viblo.asia/categories/game">Game</a>
+                    </li>
+                                    <li class="python category-active">
+                        <a href="https://viblo.asia/categories/python">Python</a>
+                    </li>
+                                    <li class="uncategory category-active">
+                        <a href="https://viblo.asia/categories/uncategory">Uncategory</a>
+                    </li>
+                                    <li class="design category-active">
+                        <a href="https://viblo.asia/categories/design">Design</a>
+                    </li>
+                                <li><a href="https://viblo.asia/categories">View all...</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 box-footer author-footer">
+            <p class="title-box">Hot author</p>
+            <ul class="box-author clear-dot">
+                                    <li>
+                        <a href="https://viblo.asia/users/show/akiyama" style="background: url(https://viblo.asia/uploads/images/269543f6db363dafa8470701f2b776f6cc8d438b/20f3607681959fb65bce2dc37b5f1b2c856be52c.png)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/thangtd90" style="background: url(https://viblo.asia/uploads/images/49877df951161833ea1e4005a671995a9cca7dd2/ee8c0dac1f9ddf499cb95574cbd1c8d7ad7eda25.jpg)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/minhp" style="background: url(https://viblo.asia/uploads/images/3a64d4330912bf3ebb7cd6708adab3af76633072/4d15a7dda25e344af78016a97a14df51eb8b6bf1.jpg)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/dinhhoanglong91" style="background: url(https://viblo.asia/uploads/images/12825aa8ddacf0cbbe0a1a8e2009c461d467c567/4cd89b20bff4663c48d5a3a522d50a72c6cfc9bf.jpg)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/vigov5" style="background: url(https://www.gravatar.com/avatar/a76c014efbe089acfeb98861517a88cf?s=50&d=mm&r=g)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/vuonghv" style="background: url(https://viblo.asia/uploads/images/041df09fe20ff00bd7e91b190728ed5febf5b712/8d45e30c9ff95e9d81491babf0d2d925ea120ab5.png)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/bs90" style="background: url(https://viblo.asia/uploads/images/cc8a95ddfa4b26bacf2706587883880c532ca044/0acd14ffe382d485add5204d30dd6fbff8be2826.png)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/euclid" style="background: url(https://viblo.asia/uploads/images/16f4f44126b2b1b11f9f0e01621d6ab9425240e9/ba31c90add202f9796d09437218362ca1bb8b68c.gif)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/tungshooter" style="background: url(https://viblo.asia/uploads/images/b76c5b0efe4ebf3f1f33edcf0385d705d052bbe6/e21fdffb6a8f7d5863c5b5e46c5ee4fa05efe8b4.jpg)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/naa" style="background: url(https://www.gravatar.com/avatar/87a73782b8b1b6f4024882465c7cabd9?s=50&d=mm&r=g)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/hcminh901" style="background: url(https://www.gravatar.com/avatar/3f25663a56e3293cd64899ee6d150e87?s=50&d=mm&r=g)"></a>
+                    </li>
+                                    <li>
+                        <a href="https://viblo.asia/users/show/kanamikiii" style="background: url(https://www.gravatar.com/avatar/e0a573749f16398acbdabdab01e9a552?s=50&d=mm&r=g)"></a>
+                    </li>
+                            </ul>
+        </div>
+
+        <div class="col-sm-3 col-md-3 col-lg-3 box-footer feedback-footer">
+            <p class="title-box">Feedback</p>
+            <form method="POST" action="https://viblo.asia/feedbacks" accept-charset="UTF-8" class="box-feedback"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                <input placeholder="Title" id="title-feedback" name="title" type="text">
+                <textarea placeholder="Message" id="message-feedback" rows="4" name="message" cols="50"></textarea>
+                <input placeholder="Email" id="email-user-feedback" name="email" type="text">
+                <button type="button" id="send-feed-back">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid last-footer">
+        <div class="container">
+            <a class="" href="http://framgia.co.jp/" target="_blank"><span class="copyright">Framgia Inc.</span></a>
+
+            
+            <ul class="team-privacy clear-dot team-privacy-right">
+                                                            <li><a id="language-setting-footer" href="javascript:void(0);"><span class="flag_en" >&nbsp;</span> English</a></li>
+                                                                                                                            <li><a href="/groups/viblo_apis">Viblo APIs</a></li>
+                <li><a href="/terms">Terms of service</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+        </div>
+    </div>
+    <script src="https://viblo.asia/js/jquery-1.11.1.min.js"></script>
+
+<script src="https://viblo.asia/js/jquery-ui.min.js"></script>
+
+<script src="https://viblo.asia/js/bootstrap-335.min.js"></script>
+
+<script src="https://viblo.asia/js/bootbox.min.js"></script>
+
+<script src="https://viblo.asia/js/bootstrap-growl.min.js"></script>
+
+<script src="https://viblo.asia/js/admin.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/sweet-alert.min.js"></script>
+
+<script src="https://viblo.asia/js/jquery.lazyload.min.js"></script>
+
+<script src="https://viblo.asia/js/jquery.mobile-events.min.js"></script>
+
+<script src="https://viblo.asia/js/jquery.touchSwipe.js"></script>
+
+<script type="text/javascript">
+    var baseURL = "https://viblo.asia";
+    var quickSearchType = {"header":1,"footer":2,"post":3,"user":4};
+        var MAX_IMAGE_SIZE = 6;
+</script>
+<script type="text/javascript">
+    var supportedLanguages = ["Batchfile","C_Cpp","Clojure","Coffee","Cobol","Csharp","CSS","Golang","Groovy","HAML","Haskell","Haxe","HTML","Jade","Java","JavaScript","JSON","LaTeX","LESS","Lua","Markdown","Mysql","ObjectiveC","OCaml","Pascal","Perl","pgSQL","PHP","PHP_HTML","Powershell","Python","Ruby","SASS","Scala","SCSS","SH","Smarty","SQL","Swift","Textile","TextileToHtml","XML","XQuery","YAML"];
+    var highlightModeMappingArr = {"batchfile":"text\/x-sh","c_cpp":"text\/x-c++src","clojure":"text\/x-clojure","coffee":"text\/x-coffeescript","cobol":"text\/x-cobol","csharp":"text\/x-csharp","css":"text\/css","golang":"text\/x-go","groovy":"text\/x-groovy","haml":"text\/x-haml","haskell":"text\/x-haskell","haxe":"text\/x-haxe","html":"text\/html","jade":"text\/x-jade","java":"text\/x-java","javascript":"text\/javascript","json":"application\/ld+json","latex":"text\/x-stex","less":"text\/x-less","lua":"text\/x-lua","markdown":"text\/x-markdown","mysql":"text\/x-mysql","objectivec":"text\/x-objectivec","ocaml":"text\/x-ocaml","pascal":"text\/x-pascal","perl":"text\/x-perl","pgsql":"text\/x-sql","php":"text\/x-php","php_html":"application\/x-httpd-php","powershell":"text\/x-sh","python":"text\/x-python","ruby":"text\/x-ruby","sass":"text\/x-sass","scala":"text\/x-scala","scss":"text\/x-scss","sh":"text\/x-sh","smarty":"text\/x-smarty","sql":"text\/x-sql","swift":"swift","textile":"text\/x-textile","textiletohtml":"text\/x-textile","xml":"application\/xml","xquery":"application\/xquery","yaml":"text\/x-yaml"};
+    var aLanguage = "<li class=\"language-element\">\n    <select class=\"form-control language-post\" name=\"languages[]\"><option value=\"en\">English<\/option><option value=\"vi\">Ti\u1ebfng Vi\u1ec7t<\/option><option value=\"ja\">\u65e5\u672c\u8a9e<\/option><option value=\"af\">Afrikaans<\/option><option value=\"az\">Az\u0259rbaycan dili<\/option><option value=\"id\">Bahasa Indonesia<\/option><option value=\"ms\">Bahasa Melayu<\/option><option value=\"jv\">Basa Jawa<\/option><option value=\"cx\">Bisaya<\/option><option value=\"bs\">Bosanski<\/option><option value=\"br\">Brezhoneg<\/option><option value=\"ca\">Catal&agrave;<\/option><option value=\"cs\">\u010ce&scaron;tina<\/option><option value=\"cy\">Cymraeg<\/option><option value=\"da\">Dansk<\/option><option value=\"de\">Deutsch<\/option><option value=\"et\">Eesti<\/option><option value=\"es\">Espa&ntilde;ol<\/option><option value=\"es_CO\">Espa&ntilde;ol (Colombia)<\/option><option value=\"es_ES\">Espa&ntilde;ol (Espa&ntilde;a)<\/option><option value=\"eo\">Esperanto<\/option><option value=\"eu\">Euskara<\/option><option value=\"tl\">Filipino<\/option><option value=\"fo\">F&oslash;royskt<\/option><option value=\"fr_CA\">Fran&ccedil;ais (Canada)<\/option><option value=\"fr\">Fran&ccedil;ais (France)<\/option><option value=\"fy\">Frysk<\/option><option value=\"ga\">Gaeilge<\/option><option value=\"gl\">Galego<\/option><option value=\"gn\">Guarani<\/option><option value=\"hr\">Hrvatski<\/option><option value=\"rw\">Ikinyarwanda<\/option><option value=\"is\">&Iacute;slenska<\/option><option value=\"it\">Italiano<\/option><option value=\"sw\">Kiswahili<\/option><option value=\"ku\">Kurd&icirc; (Kurmanc&icirc;)<\/option><option value=\"lv\">Latvie&scaron;u<\/option><option value=\"fb\">Leet Speak<\/option><option value=\"lt\">Lietuvi\u0173<\/option><option value=\"la\">lingua latina<\/option><option value=\"hu\">Magyar<\/option><option value=\"nl\">Nederlands<\/option><option value=\"nl_BE\">Nederlands (Belgi&euml;)<\/option><option value=\"nb\">Norsk (bokm&aring;l)<\/option><option value=\"nn\">Norsk (nynorsk)<\/option><option value=\"uz\">O&#039;zbek<\/option><option value=\"pl\">Polski<\/option><option value=\"pt_BR\">Portugu&ecirc;s (Brasil)<\/option><option value=\"pt\">Portugu&ecirc;s (Portugal)<\/option><option value=\"ro\">Rom&acirc;n\u0103<\/option><option value=\"sq\">Shqip<\/option><option value=\"sk\">Sloven\u010dina<\/option><option value=\"sl\">Sloven&scaron;\u010dina<\/option><option value=\"fi\">Suomi<\/option><option value=\"sv\">Svenska<\/option><option value=\"tr\">T&uuml;rk&ccedil;e<\/option><option value=\"el\">&Epsilon;&lambda;&lambda;&eta;&nu;&iota;&kappa;\u03ac<\/option><option value=\"be\">\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u043a\u0430\u044f<\/option><option value=\"bg\">\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438<\/option><option value=\"kk\">\u049a\u0430\u0437\u0430\u049b\u0448\u0430<\/option><option value=\"mk\">\u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438<\/option><option value=\"mn\">\u041c\u043e\u043d\u0433\u043e\u043b<\/option><option value=\"ru\">\u0420\u0443\u0441\u0441\u043a\u0438\u0439<\/option><option value=\"sr\">\u0421\u0440\u043f\u0441\u043a\u0438<\/option><option value=\"tg\">\u0422\u043e\u04b7\u0438\u043a\u04e3<\/option><option value=\"uk\">\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430<\/option><option value=\"ka\">\u10e5\u10d0\u10e0\u10d7\u10e3\u10da\u10d8<\/option><option value=\"hy\">\u0540\u0561\u0575\u0565\u0580\u0565\u0576<\/option><option value=\"he\">\u05e2\u05d1\u05e8\u05d9\u05ea<\/option><option value=\"ur\">\u0627\u0631\u062f\u0648<\/option><option value=\"ar\">\u0627\u0644\u0639\u0631\u0628\u064a\u0629<\/option><option value=\"ps\">\u067e\u069a\u062a\u0648<\/option><option value=\"fa\">\u0641\u0627\u0631\u0633\u06cc<\/option><option value=\"cb\">\u06a9\u0648\u0631\u062f\u06cc\u06cc \u0646\u0627\u0648\u06d5\u0646\u062f\u06cc<\/option><option value=\"ne\">\u0928\u0947\u092a\u093e\u0932\u0940<\/option><option value=\"mr\">\u092e\u0930\u093e\u0920\u0940<\/option><option value=\"hi\">\u0939\u093f\u0928\u094d\u0926\u0940<\/option><option value=\"bn\">\u09ac\u09be\u0982\u09b2\u09be<\/option><option value=\"pa\">\u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40<\/option><option value=\"gu\">\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0<\/option><option value=\"or\">\u0b13\u0b21\u0b3c\u0b3f\u0b06<\/option><option value=\"ta\">\u0ba4\u0bae\u0bbf\u0bb4\u0bcd<\/option><option value=\"te\">\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41<\/option><option value=\"kn\">\u0c95\u0ca8\u0ccd\u0ca8\u0ca1<\/option><option value=\"ml\">\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02<\/option><option value=\"si\">\u0dc3\u0dd2\u0d82\u0dc4\u0dbd<\/option><option value=\"th\">\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22<\/option><option value=\"km\">\u1797\u17b6\u179f\u17b6\u1781\u17d2\u1798\u17c2\u179a<\/option><option value=\"ko\">\ud55c\uad6d\uc5b4<\/option><option value=\"zh\">\u4e2d\u6587(\u53f0\u7063)<\/option><option value=\"zh_CN\">\u4e2d\u6587(\u7b80\u4f53)<\/option><option value=\"zh_HK\">\u4e2d\u6587(\u9999\u6e2f)<\/option><\/select>\n    <button class=\"btn btn-sm btn-default remove-language\" data-type=\"selectedLanguages\" type=\"button\">Remove<\/button>\n<\/li>\n";
+    var maxLanguages = 92;
+    var errorMsg = "Something went wrong, please try again later.";
+    var noticeLabel = "Notice!";
+    var sorryLabel = "Sorry!";
+    var errorLabel = "Error!";
+    var thanksLabel = "Thank you!";
+    var successLabel = "Success!";
+    var confirmLabel = "Confirmation";
+    var yesBtn = "Yes";
+    var noBtn = "No";
+    var okBtn = "Ok";
+    var youSureMsg = "Are you sure?";
+    var undoRequest = "Undo request";
+    var joinGroupLabel = "Join";
+    var loading = "Loading...";
+    var loadMore = "Load more";
+    var nameLabel = "Your name";
+    var userNameLabel = "User name";
+    var emailLabel = "Email address";
+    var passwordLabel = "Password";
+    var confirmPwdLabel = "Password confirmation";
+    var agreeWithTerms = "You have to agree with the Viblo Terms of Service";
+    var confirmDelete = "Are you sure you want to delete ";
+</script>
+<script src="https://viblo.asia/js/all.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/app.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/ga.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/node/client.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/node/socket.iov100.js"></script>
+
+<script src="https://viblo.asia/js/groups.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/language-settings.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/custom.js?version=1468209578"></script>
+
+<script src="https://viblo.asia/js/logscreen.js?version=1468209578"></script>
+
+    <script>
+                var post_id =  1938;
+                var blogger = "blogger";
+        var editorThemes =  ["3024 Day","3024 Night","Ambiance","Ambiance Mobile","Base16 Dark","Base16 Light","Blackboard","Cobalt","Colorforth","Eclipse","Elegant","Erlang Dark","Lesser Dark","Liquibyte","Mbo","Mdn Like","Midnight","Monokai","Neat","Neo","Night","Paraiso Dark","Paraiso Light","Pastel On Dark","Rubyblue","Solarized","The Matrix","Tomorrow Night Bright","Tomorrow Night Eighties","Twilight","Vibrant Ink","Xq Dark","Xq Light","Zenburn"];
+        var helpful_btn = "Yes";
+        var not_helpful_btn = "No";
+        var helpful_count = 0;
+        var not_helpful_count = 0;
+        var shareCountUrl = "https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe";
+        var undoRequestText = "Undo request";
+        var joinThisGroupText = "Join";
+        var clipThisPost = "Clip this post";
+        var removeClipped = "Remove from Clipped";
+    </script>
+    <script src="https://viblo.asia/js/codemirror/lib/markdown-it.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/markdown-it-footnote.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/highlight.pack.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/emojify.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/codemirror.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/overlay.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/xml.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/markdown.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/gfm.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/gfm.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/javascript.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/css.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/htmlmixed.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/rawinflate.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/lib/rawdeflate.js"></script>
+
+
+<script src="https://viblo.asia/js/codemirror/addon/edit/continuelist.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/fold/foldcode.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/fold/foldgutter.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/fold/brace-fold.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/fold/xml-fold.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/fold/markdown-fold.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/selection/active-line.js"></script>
+
+<script src="https://viblo.asia/js/codemirror/addon/edit/matchbrackets.js"></script>
+
+
+
+                <script src="https://viblo.asia/js/codemirror/mode/apl/apl.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/asciiarmor/asciiarmor.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/asterisk/asterisk.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/clike/clike.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/clojure/clojure.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/cmake/cmake.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/cobol/cobol.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/coffeescript/coffeescript.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/commonlisp/commonlisp.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/css/css.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/cypher/cypher.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/d/d.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/dart/dart.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/diff/diff.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/django/django.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/dtd/dtd.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/dylan/dylan.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/ebnf/ebnf.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/ecl/ecl.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/eiffel/eiffel.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/erlang/erlang.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/forth/forth.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/fortran/fortran.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/gas/gas.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/gfm/gfm.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/gherkin/gherkin.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/go/go.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/groovy/groovy.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/haml/haml.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/haskell/haskell.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/haxe/haxe.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/http/http.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/idl/idl.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/jade/jade.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/javascript/javascript.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/jinja2/jinja2.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/julia/julia.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/kotlin/kotlin.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/livescript/livescript.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/lua/lua.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/markdown/markdown.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/mirc/mirc.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/mllike/mllike.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/modelica/modelica.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/mumps/mumps.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/nginx/nginx.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/ntriples/ntriples.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/octave/octave.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/pascal/pascal.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/pegjs/pegjs.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/perl/perl.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/php/php.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/pig/pig.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/properties/properties.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/puppet/puppet.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/python/python.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/q/q.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/r/r.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/rpm/rpm.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/rst/rst.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/ruby/ruby.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/rust/rust.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/sass/sass.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/scheme/scheme.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/shell/shell.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/sieve/sieve.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/slim/slim.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/smalltalk/smalltalk.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/smarty/smarty.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/solr/solr.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/soy/soy.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/sparql/sparql.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/spreadsheet/spreadsheet.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/sql/sql.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/stex/stex.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/stylus/stylus.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/swift/swift.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/tcl/tcl.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/textile/textile.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/tiddlywiki/tiddlywiki.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/tiki/tiki.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/toml/toml.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/tornado/tornado.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/troff/troff.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/turtle/turtle.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/vb/vb.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/vbscript/vbscript.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/velocity/velocity.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/verilog/verilog.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/xml/xml.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/xquery/xquery.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/yaml/yaml.js"></script>
+
+                <script src="https://viblo.asia/js/codemirror/mode/z80/z80.js"></script>
+
+
+<script src="https://viblo.asia/js/textile.min.js"></script>
+            <script src="https://viblo.asia/js/popup-signup.js?version=1468209578"></script>
+
+        <script src="https://viblo.asia/js_min/post_show.min.js?version=1468323350"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.post-body pre code').each(function() {
+                if (parseInt(($(this).find('span.label:first')).size()) == 0) {
+                    var stringLanguage = $(this).attr('class');
+                    var languageName = 'Default';
+                    if (stringLanguage != undefined) {
+                        languageName = stringLanguage.slice(9, stringLanguage.length);
+                    }
+                    $(this).prepend('<span class="label label-default">' + languageName + '</span><br/>');
+                }
+            })
+        });
+    </script>
+            <!-- Login Modal -->
+<link media="all" type="text/css" rel="stylesheet" href="https://viblo.asia/css/popup-toppage.css?version=1468209578">
+
+<script async="async" src="https://viblo.asia/js/toppage.js?version=1468209578"></script>
+
+
+<div class="modal fade inner-content" id="viblo-login-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog basicpopup-content" >
+        <div id="popup-content" class="popup-content">
+            <div class="inner-content">
+                <div class="content-top">Login</div>
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <p>Join us to find useful information required to improve your skill</p>
+                        <p>sign in with</p>
+                        <div class="socials">
+                            <a href="https://viblo.asia/socials/facebook" class="ic-face"></a>
+                            <a href="https://viblo.asia/socials/google" class="ic-google"></a>
+                            <a href="https://viblo.asia/socials/github" class="ic-git"></a>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="line-or">or</div>
+                    <div class="content-body-bottom form-content">
+                        <div class="message-error msg-error"></div>
+                        <form method="POST" action="https://viblo.asia/users/login" accept-charset="UTF-8" class="viblo-login-form" role="form"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                            <input name="return" type="hidden" value="https://viblo.asia/hoang.thi.tuan.dung/posts/znVGL2LYRZOe">
+                            <input id="txtUsername" placeholder="User name or E-mail" name="username" type="text">
+                            <div class="username-error error"></div>
+                            <input class="input-last" placeholder="Enter password" name="password" type="password" value="">
+                            <div class="password-error error"></div>
+                            <div class="cb-remember">
+                                <input checked="checked" name="remember" type="checkbox" value="1"> Remember me
+                            </div>
+                            <br>
+                            <div class="clr"></div>
+                            <button class="btn-submit-login" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="content-footer">
+                    <a href="#" class="btn-register btn-form-register see-more pull-left">Not member yet?</a>
+                    <a href="https://viblo.asia/password/remind" class="see-more pull-right">Forgot password!</a>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="popup-content2" class="popup-content">
+            <div class="inner-content">
+                <div class="content-top">Sign up</div>
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <p>Join us to find useful information required to improve your skill</p>
+                        <p>sign in with</p>
+                        <div class="socials">
+                            <a href="https://viblo.asia/socials/facebook" class="ic-face"></a>
+                            <a href="https://viblo.asia/socials/google" class="ic-google"></a>
+                            <a href="https://viblo.asia/socials/github" class="ic-git"></a>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="line-or">or</div>
+                    <div class="content-body-bottom form-content">
+                        <div class="message-error"></div>
+                        <form method="POST" action="https://viblo.asia/users/signup" accept-charset="UTF-8" class="viblo-signup-form" role="form"><input name="_token" type="hidden" value="2xNkundjb7SWlH44qi0CQWTlvXa2KxJ2b3QgV1Ae">
+                            <input class="input-popup2 input-popup-float1" placeholder="Your name" name="name" type="text">
+                            <div class="name-error error"></div>
+                            <input class="input-popup2 input-popup-float2" placeholder="User name" name="username" type="text">
+                            <div class="username-error error"></div>
+                            <div class="clr"></div>
+                            <input class="input-popup2" placeholder="Email address" name="email" type="text">
+                            <div class="email-error error"></div>
+                            <input class="input-popup2 input-popup-float1" placeholder="Password" name="password" type="password" value="">
+                            <div class="password-error error"></div>
+                            <input class="input-popup2 input-popup-float2" placeholder="Password confirmation" name="password_confirmation" type="password" value="">
+                            <div class="password_confirmation-error error"></div>
+                            <div class="clr"></div>
+                            <select class="select-popup2 default-post-language" name="default_post_language"><option value="" selected="selected">Your post language</option><option value="en">English</option><option value="vi">Tiếng Việt</option><option value="ja">日本語</option><option value="af">Afrikaans</option><option value="az">Azərbaycan dili</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="jv">Basa Jawa</option><option value="cx">Bisaya</option><option value="bs">Bosanski</option><option value="br">Brezhoneg</option><option value="ca">Catal&agrave;</option><option value="cs">Če&scaron;tina</option><option value="cy">Cymraeg</option><option value="da">Dansk</option><option value="de">Deutsch</option><option value="et">Eesti</option><option value="es">Espa&ntilde;ol</option><option value="es_CO">Espa&ntilde;ol (Colombia)</option><option value="es_ES">Espa&ntilde;ol (Espa&ntilde;a)</option><option value="eo">Esperanto</option><option value="eu">Euskara</option><option value="tl">Filipino</option><option value="fo">F&oslash;royskt</option><option value="fr_CA">Fran&ccedil;ais (Canada)</option><option value="fr">Fran&ccedil;ais (France)</option><option value="fy">Frysk</option><option value="ga">Gaeilge</option><option value="gl">Galego</option><option value="gn">Guarani</option><option value="hr">Hrvatski</option><option value="rw">Ikinyarwanda</option><option value="is">&Iacute;slenska</option><option value="it">Italiano</option><option value="sw">Kiswahili</option><option value="ku">Kurd&icirc; (Kurmanc&icirc;)</option><option value="lv">Latvie&scaron;u</option><option value="fb">Leet Speak</option><option value="lt">Lietuvių</option><option value="la">lingua latina</option><option value="hu">Magyar</option><option value="nl">Nederlands</option><option value="nl_BE">Nederlands (Belgi&euml;)</option><option value="nb">Norsk (bokm&aring;l)</option><option value="nn">Norsk (nynorsk)</option><option value="uz">O&#039;zbek</option><option value="pl">Polski</option><option value="pt_BR">Portugu&ecirc;s (Brasil)</option><option value="pt">Portugu&ecirc;s (Portugal)</option><option value="ro">Rom&acirc;nă</option><option value="sq">Shqip</option><option value="sk">Slovenčina</option><option value="sl">Sloven&scaron;čina</option><option value="fi">Suomi</option><option value="sv">Svenska</option><option value="tr">T&uuml;rk&ccedil;e</option><option value="el">&Epsilon;&lambda;&lambda;&eta;&nu;&iota;&kappa;ά</option><option value="be">Беларуская</option><option value="bg">Български</option><option value="kk">Қазақша</option><option value="mk">Македонски</option><option value="mn">Монгол</option><option value="ru">Русский</option><option value="sr">Српски</option><option value="tg">Тоҷикӣ</option><option value="uk">Українська</option><option value="ka">ქართული</option><option value="hy">Հայերեն</option><option value="he">עברית</option><option value="ur">اردو</option><option value="ar">العربية</option><option value="ps">پښتو</option><option value="fa">فارسی</option><option value="cb">کوردیی ناوەندی</option><option value="ne">नेपाली</option><option value="mr">मराठी</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option><option value="pa">ਪੰਜਾਬੀ</option><option value="gu">ગુજરાતી</option><option value="or">ଓଡ଼ିଆ</option><option value="ta">தமிழ்</option><option value="te">తెలుగు</option><option value="kn">ಕನ್ನಡ</option><option value="ml">മലയാളം</option><option value="si">සිංහල</option><option value="th">ภาษาไทย</option><option value="km">ភាសាខ្មែរ</option><option value="ko">한국어</option><option value="zh">中文(台灣)</option><option value="zh_CN">中文(简体)</option><option value="zh_HK">中文(香港)</option></select>
+                            <input class="tos-check" checked="checked" name="tos" type="checkbox" value="1">
+                            I agree to Viblo <a href="https://viblo.asia/terms" class="see-more" target="_blank">Terms of Service</a>
+                            <div class="clr"></div>
+                            <button class="btn-signup-submit" type="submit">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="content-footer">
+                    <a href="#" class="btn-login btn-form-login see-more">Already a member?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>
